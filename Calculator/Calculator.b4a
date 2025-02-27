@@ -1,0 +1,164 @@
+﻿Build1=Default,b4a.example
+File1=Layout.bal
+FileGroup1=Default Group
+Group=Default Group
+Library1=core
+Library2=xui
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Starter
+NumberOfFiles=1
+NumberOfLibraries=2
+NumberOfModules=1
+Version=13.1
+@EndOfDesignText@
+#Region  Project Attributes 
+    #ApplicationLabel: Demo Calculator
+    #VersionCode: 1
+    #VersionName: 
+    'SupportedOrientations possible values: unspecified, landscape or portrait.
+    #SupportedOrientations: unspecified
+    #CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+    #FullScreen: False
+    #IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	Private xui As XUI
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	Private lblPrompt As Label
+	Private lblResult As Label
+	Private btnSender As Button
+	Dim text As String
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Layout")
+End Sub
+
+Private Sub ProcessOperators(operator As String)
+	Do While text.IndexOf(operator) <> -1
+		Dim ind As Int = text.IndexOf(operator)
+		Dim str1 As String = GetNumberLeft(ind)
+		Dim str2 As String = GetNumberRight(ind)
+        
+		If str1 = "" Or str2 = "" Then
+			'Log("Invalid")
+			lblResult.Text = ""
+			Return ' Exit the subroutine if invalid
+		End If
+
+		Dim strRem As String = str1 & operator & str2
+		Dim int1 As Float = str1.As(Float)
+		Dim int2 As Float = str2.As(Float)
+		Dim res As Float
+
+		If operator = "X" Then
+			res = int1 * int2
+		Else If operator = "%" Then
+			res = (int1 * int2) / 100
+		Else If operator = "/" Then
+			res = int1 / int2
+		Else If operator = "+" Then
+			res = int1 + int2
+		Else If operator = "-" Then
+			res = int1 - int2
+		End If
+
+		Log("Res: "&res)
+		Log("NFO: " & NumberFormat2(res, 1, 10, 0, False))
+		
+		Log("Initial text: " & text)
+		text = text.Replace(strRem, NumberFormat2(res, 1, 10, 0, False))
+		Log("Updated text: " & text)
+
+		Log("Text: " & text)
+		'Log("lbl: True")
+		lblResult.Text = text
+	Loop
+    
+End Sub
+
+
+Private Sub GetNumberLeft(ind As Int) As String
+	Dim leftCtr As Int = ind
+	For row = ind - 1 To 0 Step -1
+		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "." Or text.CharAt(row) = "-" Then
+			leftCtr = row
+		Else
+			Exit
+		End If
+	Next
+    
+	If leftCtr = ind Then
+		'Log("L: True")
+		Return ""
+	Else
+		Return text.SubString2(leftCtr, ind)
+	End If
+End Sub
+
+Private Sub GetNumberRight(ind As Int) As String
+	Dim rightCtr As Int = ind
+	For row = ind + 1 To text.Length - 1 Step 1
+		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "." Then
+			rightCtr = row
+		Else
+			Exit
+		End If
+	Next
+
+	If rightCtr = ind Then
+		'Log("R: True")
+		Return ""
+	End If
+	Return text.SubString2(ind + 1, rightCtr + 1)
+End Sub
+
+Private Sub Solve
+	text = lblPrompt.Text
+	lblResult.Text = ""
+	ProcessOperators("/")
+	ProcessOperators("X")
+	ProcessOperators("-")
+	ProcessOperators("+")
+	ProcessOperators("%")
+End Sub
+
+Private Sub btnOperation_Click()
+	btnSender = Sender
+	Select btnSender.Tag
+		Case "="
+			Solve
+			lblPrompt.Text = lblResult.Text
+			lblResult.Text = ""
+		Case Else
+			lblPrompt.Text = lblPrompt.Text & btnSender.Text
+	End Select
+End Sub
+
+Private Sub btnAction_Click
+	btnSender = Sender
+	Select btnSender.Tag
+		Case "AC"
+			lblPrompt.Text = ""
+			lblResult.Text = ""
+		Case "BS"
+			If lblPrompt.Text.Length > 0 Then
+				lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+				Solve
+			End If
+		Case "Dot"
+			lblPrompt.Text = lblPrompt.Text & btnSender.Text
+		Case Else
+			lblPrompt.Text = lblPrompt.Text & btnSender.Text
+			Solve
+	End Select
+End Sub
