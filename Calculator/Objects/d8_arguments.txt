@@ -1,0 +1,24 @@
+--release
+--output
+C:\GitHub Projects\Calculator-repo\Calculator\Objects
+--lib
+C:\Android\platforms\android-34\android.jar
+--min-api
+21
+C:\Android\tools\..\extras\b4a_local\unpacked-b4ashared-63872384116000\dex_v1\b4ashared.zip
+c:\android\tools\..\extras\b4a_remote\androidx\multidex\multidex\2.0.1\unpacked-multidex-2.0.1\jars\classes.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-core-63872384118000\dex_v1\core.zip
+C:\Android\tools\..\extras\b4a_local\unpacked-xui-63872384118000\dex_v1\xui.zip
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\main$1.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\main$B4AMenuItemsClickListener.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\main$HandleKeyDelayed.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\main$ResumeMessage.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\main$WaitForLayout.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\main.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\R$drawable.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\R$style.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\R.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\starter$1.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\starter$2.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\starter$starter_BR.dex
+C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\starter.dex

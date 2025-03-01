@@ -47,7 +47,11 @@ End Sub
 
 Private Sub ProcessOperators(operator As String)
 	Do While text.IndexOf2(operator,1) <> -1
-		Dim ind As Int = text.IndexOf2(operator,1)
+		If operator = "-" Then
+			Dim ind As Int = text.IndexOf2(operator,1)
+		Else
+			Dim ind As Int = text.IndexOf(operator)
+		End If
 		Dim str1 As String = GetNumberLeft(ind)
 		Dim str2 As String = GetNumberRight(ind)
         
@@ -62,23 +66,24 @@ Private Sub ProcessOperators(operator As String)
 		Dim int2 As Float = str2.As(Float)
 		Dim res As Float
 
-		If operator = "X" Then
-			res = int1 * int2
-		Else If operator = "%" Then
-			res = (int1 * int2) / 100
-		Else If operator = "/" Then
-			res = int1 / int2
-		Else If operator = "+" Then
-			res = int1 + int2
-		Else If operator = "-" Then
-			res = int1 - int2
-		End If
+		Select operator
+			Case "X"
+				res = int1 * int2
+			Case "/"
+				res = int1 / int2
+			Case "%"
+				res = (int1 * int2) / 100
+			Case "+"
+				res = int1 + int2
+			Case "-"
+				res = int1 - int2
+		End Select
 
 '		Log("Res: "&res)
 '		Log("NFO: " & NumberFormat2(res, 1, 10, 0, False))
 		
 		Log("Initial text: " & text)
-		text = text.Replace(strRem, NumberFormat2(res, 1, 2, 0, False))
+		text = text.Replace(strRem, NumberFormat2(res, 0, 10, 0, False))
 		Log("Updated text: " & text)
 
 		'Log("Text: " & text & CRLF)
