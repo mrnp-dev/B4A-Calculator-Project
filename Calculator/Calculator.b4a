@@ -21,8 +21,8 @@ Version=13.1
 #End Region
 
 #Region  Activity Attributes 
-    #FullScreen: False
-    #IncludeTitle: True
+    #FullScreen: True
+    #IncludeTitle: False
 #End Region
 
 Sub Process_Globals
@@ -41,6 +41,8 @@ End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
 	Activity.LoadLayout("Layout")
+	
+	'Dim r As Reflector
 End Sub
 
 Private Sub ProcessOperators(operator As String)
@@ -72,14 +74,14 @@ Private Sub ProcessOperators(operator As String)
 			res = int1 - int2
 		End If
 
-		Log("Res: "&res)
-		Log("NFO: " & NumberFormat2(res, 1, 10, 0, False))
+'		Log("Res: "&res)
+'		Log("NFO: " & NumberFormat2(res, 1, 10, 0, False))
 		
 		Log("Initial text: " & text)
-		text = text.Replace(strRem, NumberFormat2(res, 1, 10, 0, False))
+		text = text.Replace(strRem, NumberFormat2(res, 1, 2, 0, False))
 		Log("Updated text: " & text)
 
-		Log("Text: " & text)
+		'Log("Text: " & text & CRLF)
 		'Log("lbl: True")
 		lblResult.Text = text
 	Loop
@@ -90,7 +92,7 @@ End Sub
 Private Sub GetNumberLeft(ind As Int) As String
 	Dim leftCtr As Int = ind
 	For row = ind - 1 To 0 Step -1
-		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "." Or text.CharAt(row) = "-" Then
+		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "." Then
 			leftCtr = row
 		Else
 			Exit
@@ -125,11 +127,12 @@ End Sub
 Private Sub Solve
 	text = lblPrompt.Text
 	lblResult.Text = ""
-	ProcessOperators("/")
 	ProcessOperators("X")
+	ProcessOperators("/")
+	ProcessOperators("%")
 	ProcessOperators("-")
 	ProcessOperators("+")
-	ProcessOperators("%")
+	Log("---------------------------------")
 End Sub
 
 Private Sub btnOperation_Click()
@@ -150,6 +153,7 @@ Private Sub btnAction_Click
 		Case "AC"
 			lblPrompt.Text = ""
 			lblResult.Text = ""
+			
 		Case "BS"
 			If lblPrompt.Text.Length > 0 Then
 				lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)

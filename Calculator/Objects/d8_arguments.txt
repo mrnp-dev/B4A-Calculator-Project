@@ -6,11 +6,9 @@ C:\Android\platforms\android-34\android.jar
 --min-api
 21
 C:\Android\tools\..\extras\b4a_local\unpacked-b4ashared-63872384116000\dex_v1\b4ashared.zip
-C:\Android\tools\..\extras\b4a_local\unpacked-debug-63872384118000\dex_v1\debug.zip
 c:\android\tools\..\extras\b4a_remote\androidx\multidex\multidex\2.0.1\unpacked-multidex-2.0.1\jars\classes.zip
 C:\Android\tools\..\extras\b4a_local\unpacked-core-63872384118000\dex_v1\core.zip
 C:\Android\tools\..\extras\b4a_local\unpacked-xui-63872384118000\dex_v1\xui.zip
-C:\Android\tools\..\extras\b4a_local\unpacked-remotelogger-63872384118000\dex_v1\remotelogger.zip
 C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\main$1.dex
 C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\main$B4AMenuItemsClickListener.dex
 C:\GitHub Projects\Calculator-repo\Calculator\Objects\dexed\b4a\example\main$HandleKeyDelayed.dex
