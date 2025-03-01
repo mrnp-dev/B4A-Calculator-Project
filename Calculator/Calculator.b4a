@@ -67,9 +67,9 @@ Private Sub ProcessOperators(operator As String)
 		Dim res As Float
 
 		Select operator
-			Case "X"
+			Case "x"
 				res = int1 * int2
-			Case "/"
+			Case "÷"
 				res = int1 / int2
 			Case "%"
 				res = (int1 * int2) / 100
@@ -132,8 +132,8 @@ End Sub
 Private Sub Solve
 	text = lblPrompt.Text
 	lblResult.Text = ""
-	ProcessOperators("/")
-	ProcessOperators("X")
+	ProcessOperators("÷")
+	ProcessOperators("x")
 	ProcessOperators("%")
 	ProcessOperators("-")
 	ProcessOperators("+")
@@ -147,9 +147,16 @@ Private Sub btnOperation_Click()
 			Solve
 			lblPrompt.Text = lblResult.Text
 			lblResult.Text = ""
+		Case "x"
+			lblPrompt.Text = lblPrompt.Text & "x"
 		Case Else
 			lblPrompt.Text = lblPrompt.Text & btnSender.Text
 	End Select
+	If lblPrompt.Text.Length >= 16 Then
+		lblPrompt.TextSize = 40
+	Else
+		lblPrompt.TextSize = 50
+	End If
 End Sub
 
 Private Sub btnAction_Click
@@ -170,4 +177,9 @@ Private Sub btnAction_Click
 			lblPrompt.Text = lblPrompt.Text & btnSender.Text
 			Solve
 	End Select
+	If lblPrompt.Text.Length >= 16 Then
+		lblPrompt.TextSize = 40
+	Else 
+		lblPrompt.TextSize = 50
+	End If
 End Sub
