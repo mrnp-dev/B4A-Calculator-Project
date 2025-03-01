@@ -6,23 +6,23 @@ main,activity_create,1,0,29,33
 ,lblprompt,,lblresult
 ,lblprompt,,lblresult
 
-main,btnaction_click,0,1,149,172
+main,btnaction_click,0,0,168,193
 ,btnsender,,lblprompt,,lblresult,,text
 ,btnsender,,text
 ,solve,,processoperators,,getnumberleft,,getnumberright
-main,solve,0,1,119,128
+main,solve,0,1,123,137
 ,text,,lblprompt,,lblresult
 ,text
 ,processoperators,,getnumberleft,,getnumberright
-main,btnoperation_click,0,1,130,147
-,btnsender,,lblprompt,,lblresult,,text
-,btnsender,,text
-,solve,,processoperators,,getnumberleft,,getnumberright
-main,getnumberleft,0,0,84,100
+main,btnoperation_click,0,0,139,166
+,btnsender,,lblresult,,lblprompt
+,btnsender
+
+main,getnumberleft,0,0,86,102
 ,text
 
 
-main,getnumberright,0,0,102,117
+main,getnumberright,0,0,104,121
 ,text
 
 
@@ -34,8 +34,8 @@ main,process_globals,0,1,15,19
 
 
 
-main,processoperators,0,1,35,81
-,text,,lblresult
+main,processoperators,0,1,35,83
+,text
 ,text
 ,getnumberleft,,getnumberright
 starter,application_error,0,0,27,29

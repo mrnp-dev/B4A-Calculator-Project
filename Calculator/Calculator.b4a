@@ -46,49 +46,51 @@ Sub Activity_Create(FirstTime As Boolean)
 End Sub
 
 Private Sub ProcessOperators(operator As String)
+	Log(" ")
+	Log("Operator : (" & operator & ") ~~~~~")
 	Do While text.IndexOf2(operator,1) <> -1
 		If operator = "-" Then
 			Dim ind As Int = text.IndexOf2(operator,1)
 		Else
 			Dim ind As Int = text.IndexOf(operator)
 		End If
-		Dim str1 As String = GetNumberLeft(ind)
-		Dim str2 As String = GetNumberRight(ind)
+		
+		Dim strLeft As String = GetNumberLeft(ind)
+		Dim strRight As String = GetNumberRight(ind)
         
-		If str1 = "" Or str2 = "" Then
-			'Log("Invalid")
-			lblResult.Text = ""
+		If strLeft = "" Or strRight = "" Or strRight = "-" Then
+			Log("Invalid")
+			text = ""
 			Return ' Exit the subroutine if invalid
 		End If
 
-		Dim strRem As String = str1 & operator & str2
-		Dim int1 As Float = str1.As(Float)
-		Dim int2 As Float = str2.As(Float)
+		Dim strRem As String = strLeft & operator & strRight
+		Dim int1 As Float = strLeft.As(Float)
+		Dim int2 As Float = strRight.As(Float)
 		Dim res As Float
 
 		Select operator
 			Case "x"
 				res = int1 * int2
+				'Log("Running X")
 			Case "÷"
 				res = int1 / int2
+				'Log("Running /")
 			Case "%"
 				res = (int1 * int2) / 100
 			Case "+"
 				res = int1 + int2
+				'Log("Running +")
 			Case "-"
 				res = int1 - int2
+				'Log("Running -")
 		End Select
 
 '		Log("Res: "&res)
 '		Log("NFO: " & NumberFormat2(res, 1, 10, 0, False))
-		
-		Log("Initial text: " & text)
-		text = text.Replace(strRem, NumberFormat2(res, 0, 10, 0, False))
-		Log("Updated text: " & text)
-
-		'Log("Text: " & text & CRLF)
-		'Log("lbl: True")
-		lblResult.Text = text
+		Log("[ " & (text.Replace(strRem,"(" & strRem & ")") & " ]" & " = " & "[ " & text.Replace(strRem, "(" & NumberFormat2(res, 0, 13, 0, False) & ")")) & " ]")
+		text = text.Replace(strRem, NumberFormat2(res, 0, 13, 0, False))
+		'Log("= " & text)
 	Loop
     
 End Sub
@@ -97,7 +99,7 @@ End Sub
 Private Sub GetNumberLeft(ind As Int) As String
 	Dim leftCtr As Int = ind
 	For row = ind - 1 To 0 Step -1
-		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "." Then
+		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "." Or text.CharAt(row) = "-" Then
 			leftCtr = row
 		Else
 			Exit
@@ -115,7 +117,9 @@ End Sub
 Private Sub GetNumberRight(ind As Int) As String
 	Dim rightCtr As Int = ind
 	For row = ind + 1 To text.Length - 1 Step 1
-		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "." Then
+		If text.CharAt(row) = "-" And row = ind + 1 Then
+			rightCtr = row
+		Else If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "." Then
 			rightCtr = row
 		Else
 			Exit
@@ -131,12 +135,17 @@ End Sub
 
 Private Sub Solve
 	text = lblPrompt.Text
+	Log("START: " & text)
+	'Log(" ")
 	lblResult.Text = ""
 	ProcessOperators("÷")
 	ProcessOperators("x")
 	ProcessOperators("%")
 	ProcessOperators("-")
 	ProcessOperators("+")
+	Log(" ")
+	Log("RESULT: " & text)
+	lblResult.Text = text
 	Log("---------------------------------")
 End Sub
 
@@ -144,18 +153,28 @@ Private Sub btnOperation_Click()
 	btnSender = Sender
 	Select btnSender.Tag
 		Case "="
-			Solve
-			lblPrompt.Text = lblResult.Text
-			lblResult.Text = ""
+			If lblResult.Text = "∞" Then
+				lblPrompt.Text = lblResult.Text
+				lblResult.Text = ""
+			Else If lblPrompt.Text = "" Then
+				Exit
+			Else If Not(IsNumber(lblResult.Text)) Then
+				lblResult.Text = "Expression Error"
+			Else
+				lblPrompt.Text = lblResult.Text				
+				lblResult.Text = ""
+			End If
 		Case "x"
 			lblPrompt.Text = lblPrompt.Text & "x"
 		Case Else
 			lblPrompt.Text = lblPrompt.Text & btnSender.Text
 	End Select
-	If lblPrompt.Text.Length >= 16 Then
+	If lblPrompt.Text.Length < 10 Then
+		lblPrompt.TextSize = 50
+	Else If lblPrompt.Text.Length < 20 Then
 		lblPrompt.TextSize = 40
 	Else
-		lblPrompt.TextSize = 50
+		lblPrompt.TextSize = 30
 	End If
 End Sub
 
@@ -177,9 +196,11 @@ Private Sub btnAction_Click
 			lblPrompt.Text = lblPrompt.Text & btnSender.Text
 			Solve
 	End Select
-	If lblPrompt.Text.Length >= 16 Then
-		lblPrompt.TextSize = 40
-	Else 
+	If lblPrompt.Text.Length < 10 Then
 		lblPrompt.TextSize = 50
+	Else If lblPrompt.Text.Length < 20 Then
+		lblPrompt.TextSize = 40
+	Else
+		lblPrompt.TextSize = 30
 	End If
 End Sub

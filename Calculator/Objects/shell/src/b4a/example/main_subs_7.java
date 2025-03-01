@@ -3,7 +3,7 @@ package b4a.example;
 import anywheresoftware.b4a.BA;
 import anywheresoftware.b4a.pc.*;
 
-public class main_subs_2 {
+public class main_subs_7 {
 
 
 public static RemoteObject  _activity_create(RemoteObject _firsttime) throws Exception{
@@ -433,9 +433,9 @@ _res = BA.numberCast(float.class, RemoteObject.solve(new RemoteObject[] {_int1,_
  break; }
 }
 ;
- BA.debugLineNum = 77;BA.debugLine="Log(text.Replace(strRem,\"(\" & strRem & \") = \" &";
+ BA.debugLineNum = 77;BA.debugLine="Log(\"[ \" & (text.Replace(strRem,\"(\" & strRem & \"";
 Debug.ShouldStop(4096);
-main.mostCurrent.__c.runVoidMethod ("LogImpl","6196650",main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(RemoteObject.concat(RemoteObject.createImmutable("("),_strrem,RemoteObject.createImmutable(") = "),main.mostCurrent.__c.runMethod(true,"NumberFormat2",(Object)(BA.numberCast(double.class, _res)),(Object)(BA.numberCast(int.class, 0)),(Object)(BA.numberCast(int.class, 13)),(Object)(BA.numberCast(int.class, 0)),(Object)(main.mostCurrent.__c.getField(true,"False")))))),0);
+main.mostCurrent.__c.runVoidMethod ("LogImpl","6196650",RemoteObject.concat(RemoteObject.createImmutable("[ "),(RemoteObject.concat(main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(RemoteObject.concat(RemoteObject.createImmutable("("),_strrem,RemoteObject.createImmutable(")")))),RemoteObject.createImmutable(" ]"),RemoteObject.createImmutable(" = "),RemoteObject.createImmutable("[ "),main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(main.mostCurrent.__c.runMethod(true,"NumberFormat2",(Object)(BA.numberCast(double.class, _res)),(Object)(BA.numberCast(int.class, 0)),(Object)(BA.numberCast(int.class, 13)),(Object)(BA.numberCast(int.class, 0)),(Object)(main.mostCurrent.__c.getField(true,"False"))))))),RemoteObject.createImmutable(" ]")),0);
  BA.debugLineNum = 78;BA.debugLine="text = text.Replace(strRem, NumberFormat2(res, 0";
 Debug.ShouldStop(8192);
 main.mostCurrent._text = main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(main.mostCurrent.__c.runMethod(true,"NumberFormat2",(Object)(BA.numberCast(double.class, _res)),(Object)(BA.numberCast(int.class, 0)),(Object)(BA.numberCast(int.class, 13)),(Object)(BA.numberCast(int.class, 0)),(Object)(main.mostCurrent.__c.getField(true,"False")))));

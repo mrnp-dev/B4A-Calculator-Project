@@ -3,7 +3,7 @@ package b4a.example;
 import anywheresoftware.b4a.BA;
 import anywheresoftware.b4a.pc.*;
 
-public class main_subs_2 {
+public class main_subs_10 {
 
 
 public static RemoteObject  _activity_create(RemoteObject _firsttime) throws Exception{
@@ -433,9 +433,9 @@ _res = BA.numberCast(float.class, RemoteObject.solve(new RemoteObject[] {_int1,_
  break; }
 }
 ;
- BA.debugLineNum = 77;BA.debugLine="Log(text.Replace(strRem,\"(\" & strRem & \") = \" &";
+ BA.debugLineNum = 77;BA.debugLine="Log(\"[ \" & (text.Replace(strRem,\"(\" & strRem & \"";
 Debug.ShouldStop(4096);
-main.mostCurrent.__c.runVoidMethod ("LogImpl","6196650",main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(RemoteObject.concat(RemoteObject.createImmutable("("),_strrem,RemoteObject.createImmutable(") = "),main.mostCurrent.__c.runMethod(true,"NumberFormat2",(Object)(BA.numberCast(double.class, _res)),(Object)(BA.numberCast(int.class, 0)),(Object)(BA.numberCast(int.class, 13)),(Object)(BA.numberCast(int.class, 0)),(Object)(main.mostCurrent.__c.getField(true,"False")))))),0);
+main.mostCurrent.__c.runVoidMethod ("LogImpl","6196650",RemoteObject.concat(RemoteObject.createImmutable("[ "),(RemoteObject.concat(main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(RemoteObject.concat(RemoteObject.createImmutable("("),_strrem,RemoteObject.createImmutable(")")))),RemoteObject.createImmutable(" ]"),RemoteObject.createImmutable(" = "),RemoteObject.createImmutable("[ "),main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(RemoteObject.concat(RemoteObject.createImmutable("("),main.mostCurrent.__c.runMethod(true,"NumberFormat2",(Object)(BA.numberCast(double.class, _res)),(Object)(BA.numberCast(int.class, 0)),(Object)(BA.numberCast(int.class, 13)),(Object)(BA.numberCast(int.class, 0)),(Object)(main.mostCurrent.__c.getField(true,"False"))),RemoteObject.createImmutable(")")))))),RemoteObject.createImmutable(" ]")),0);
  BA.debugLineNum = 78;BA.debugLine="text = text.Replace(strRem, NumberFormat2(res, 0";
 Debug.ShouldStop(8192);
 main.mostCurrent._text = main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(main.mostCurrent.__c.runMethod(true,"NumberFormat2",(Object)(BA.numberCast(double.class, _res)),(Object)(BA.numberCast(int.class, 0)),(Object)(BA.numberCast(int.class, 13)),(Object)(BA.numberCast(int.class, 0)),(Object)(main.mostCurrent.__c.getField(true,"False")))));
@@ -460,9 +460,9 @@ Debug.ShouldStop(33554432);
  BA.debugLineNum = 123;BA.debugLine="text = lblPrompt.Text";
 Debug.ShouldStop(67108864);
 main.mostCurrent._text = main.mostCurrent._lblprompt.runMethod(true,"getText");
- BA.debugLineNum = 124;BA.debugLine="Log(\"START: \" & text)";
+ BA.debugLineNum = 124;BA.debugLine="Log(\"START: \" & text & CRLF & CRLF)";
 Debug.ShouldStop(134217728);
-main.mostCurrent.__c.runVoidMethod ("LogImpl","6393218",RemoteObject.concat(RemoteObject.createImmutable("START: "),main.mostCurrent._text),0);
+main.mostCurrent.__c.runVoidMethod ("LogImpl","6393218",RemoteObject.concat(RemoteObject.createImmutable("START: "),main.mostCurrent._text,main.mostCurrent.__c.getField(true,"CRLF"),main.mostCurrent.__c.getField(true,"CRLF")),0);
  BA.debugLineNum = 125;BA.debugLine="lblResult.Text = \"\"";
 Debug.ShouldStop(268435456);
 main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence(""));
@@ -481,9 +481,9 @@ _processoperators(RemoteObject.createImmutable("-"));
  BA.debugLineNum = 130;BA.debugLine="ProcessOperators(\"+\")";
 Debug.ShouldStop(2);
 _processoperators(RemoteObject.createImmutable("+"));
- BA.debugLineNum = 131;BA.debugLine="Log(\"RESULT: \" & text)";
+ BA.debugLineNum = 131;BA.debugLine="Log(CRLF & \"RESULT: \" & text)";
 Debug.ShouldStop(4);
-main.mostCurrent.__c.runVoidMethod ("LogImpl","6393225",RemoteObject.concat(RemoteObject.createImmutable("RESULT: "),main.mostCurrent._text),0);
+main.mostCurrent.__c.runVoidMethod ("LogImpl","6393225",RemoteObject.concat(main.mostCurrent.__c.getField(true,"CRLF"),RemoteObject.createImmutable("RESULT: "),main.mostCurrent._text),0);
  BA.debugLineNum = 132;BA.debugLine="lblResult.Text = text";
 Debug.ShouldStop(8);
 main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence(main.mostCurrent._text));

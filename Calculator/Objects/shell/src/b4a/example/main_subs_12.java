@@ -3,7 +3,7 @@ package b4a.example;
 import anywheresoftware.b4a.BA;
 import anywheresoftware.b4a.pc.*;
 
-public class main_subs_2 {
+public class main_subs_12 {
 
 
 public static RemoteObject  _activity_create(RemoteObject _firsttime) throws Exception{
@@ -28,72 +28,72 @@ finally {
 		}}
 public static RemoteObject  _btnaction_click() throws Exception{
 try {
-		Debug.PushSubsStack("btnAction_Click (main) ","main",0,main.mostCurrent.activityBA,main.mostCurrent,165);
+		Debug.PushSubsStack("btnAction_Click (main) ","main",0,main.mostCurrent.activityBA,main.mostCurrent,166);
 if (RapidSub.canDelegate("btnaction_click")) { return b4a.example.main.remoteMe.runUserSub(false, "main","btnaction_click");}
- BA.debugLineNum = 165;BA.debugLine="Private Sub btnAction_Click";
-Debug.ShouldStop(16);
- BA.debugLineNum = 166;BA.debugLine="btnSender = Sender";
+ BA.debugLineNum = 166;BA.debugLine="Private Sub btnAction_Click";
 Debug.ShouldStop(32);
-main.mostCurrent._btnsender = RemoteObject.declareNull("anywheresoftware.b4a.AbsObjectWrapper").runMethod(false, "ConvertToWrapper", RemoteObject.createNew("anywheresoftware.b4a.objects.ButtonWrapper"), main.mostCurrent.__c.runMethod(false,"Sender",main.mostCurrent.activityBA));
- BA.debugLineNum = 167;BA.debugLine="Select btnSender.Tag";
+ BA.debugLineNum = 167;BA.debugLine="btnSender = Sender";
 Debug.ShouldStop(64);
+main.mostCurrent._btnsender = RemoteObject.declareNull("anywheresoftware.b4a.AbsObjectWrapper").runMethod(false, "ConvertToWrapper", RemoteObject.createNew("anywheresoftware.b4a.objects.ButtonWrapper"), main.mostCurrent.__c.runMethod(false,"Sender",main.mostCurrent.activityBA));
+ BA.debugLineNum = 168;BA.debugLine="Select btnSender.Tag";
+Debug.ShouldStop(128);
 switch (BA.switchObjectToInt(main.mostCurrent._btnsender.runMethod(false,"getTag"),RemoteObject.createImmutable(("AC")),RemoteObject.createImmutable(("BS")),RemoteObject.createImmutable(("Dot")))) {
 case 0: {
- BA.debugLineNum = 169;BA.debugLine="lblPrompt.Text = \"\"";
-Debug.ShouldStop(256);
-main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(""));
- BA.debugLineNum = 170;BA.debugLine="lblResult.Text = \"\"";
+ BA.debugLineNum = 170;BA.debugLine="lblPrompt.Text = \"\"";
 Debug.ShouldStop(512);
+main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(""));
+ BA.debugLineNum = 171;BA.debugLine="lblResult.Text = \"\"";
+Debug.ShouldStop(1024);
 main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence(""));
  break; }
 case 1: {
- BA.debugLineNum = 173;BA.debugLine="If lblPrompt.Text.Length > 0 Then";
-Debug.ShouldStop(4096);
-if (RemoteObject.solveBoolean(">",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 0))) { 
- BA.debugLineNum = 174;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+ BA.debugLineNum = 174;BA.debugLine="If lblPrompt.Text.Length > 0 Then";
 Debug.ShouldStop(8192);
-main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"substring",(Object)(BA.numberCast(int.class, 0)),(Object)(RemoteObject.solve(new RemoteObject[] {main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),RemoteObject.createImmutable(1)}, "-",1, 1)))));
- BA.debugLineNum = 175;BA.debugLine="Solve";
+if (RemoteObject.solveBoolean(">",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 0))) { 
+ BA.debugLineNum = 175;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 Debug.ShouldStop(16384);
+main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"substring",(Object)(BA.numberCast(int.class, 0)),(Object)(RemoteObject.solve(new RemoteObject[] {main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),RemoteObject.createImmutable(1)}, "-",1, 1)))));
+ BA.debugLineNum = 176;BA.debugLine="Solve";
+Debug.ShouldStop(32768);
 _solve();
  };
  break; }
 case 2: {
- BA.debugLineNum = 178;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
-Debug.ShouldStop(131072);
+ BA.debugLineNum = 179;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
+Debug.ShouldStop(262144);
 main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(RemoteObject.concat(main.mostCurrent._lblprompt.runMethod(true,"getText"),main.mostCurrent._btnsender.runMethod(true,"getText"))));
  break; }
 default: {
- BA.debugLineNum = 180;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
-Debug.ShouldStop(524288);
-main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(RemoteObject.concat(main.mostCurrent._lblprompt.runMethod(true,"getText"),main.mostCurrent._btnsender.runMethod(true,"getText"))));
- BA.debugLineNum = 181;BA.debugLine="Solve";
+ BA.debugLineNum = 181;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
 Debug.ShouldStop(1048576);
+main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(RemoteObject.concat(main.mostCurrent._lblprompt.runMethod(true,"getText"),main.mostCurrent._btnsender.runMethod(true,"getText"))));
+ BA.debugLineNum = 182;BA.debugLine="Solve";
+Debug.ShouldStop(2097152);
 _solve();
  break; }
 }
 ;
- BA.debugLineNum = 183;BA.debugLine="If lblPrompt.Text.Length < 10 Then";
-Debug.ShouldStop(4194304);
-if (RemoteObject.solveBoolean("<",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 10))) { 
- BA.debugLineNum = 184;BA.debugLine="lblPrompt.TextSize = 50";
+ BA.debugLineNum = 184;BA.debugLine="If lblPrompt.Text.Length < 10 Then";
 Debug.ShouldStop(8388608);
+if (RemoteObject.solveBoolean("<",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 10))) { 
+ BA.debugLineNum = 185;BA.debugLine="lblPrompt.TextSize = 50";
+Debug.ShouldStop(16777216);
 main.mostCurrent._lblprompt.runMethod(true,"setTextSize",BA.numberCast(float.class, 50));
  }else 
-{ BA.debugLineNum = 185;BA.debugLine="Else If lblPrompt.Text.Length < 20 Then";
-Debug.ShouldStop(16777216);
-if (RemoteObject.solveBoolean("<",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 20))) { 
- BA.debugLineNum = 186;BA.debugLine="lblPrompt.TextSize = 40";
+{ BA.debugLineNum = 186;BA.debugLine="Else If lblPrompt.Text.Length < 20 Then";
 Debug.ShouldStop(33554432);
+if (RemoteObject.solveBoolean("<",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 20))) { 
+ BA.debugLineNum = 187;BA.debugLine="lblPrompt.TextSize = 40";
+Debug.ShouldStop(67108864);
 main.mostCurrent._lblprompt.runMethod(true,"setTextSize",BA.numberCast(float.class, 40));
  }else {
- BA.debugLineNum = 188;BA.debugLine="lblPrompt.TextSize = 30";
-Debug.ShouldStop(134217728);
+ BA.debugLineNum = 189;BA.debugLine="lblPrompt.TextSize = 30";
+Debug.ShouldStop(268435456);
 main.mostCurrent._lblprompt.runMethod(true,"setTextSize",BA.numberCast(float.class, 30));
  }}
 ;
- BA.debugLineNum = 190;BA.debugLine="End Sub";
-Debug.ShouldStop(536870912);
+ BA.debugLineNum = 191;BA.debugLine="End Sub";
+Debug.ShouldStop(1073741824);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -104,83 +104,83 @@ finally {
 		}}
 public static RemoteObject  _btnoperation_click() throws Exception{
 try {
-		Debug.PushSubsStack("btnOperation_Click (main) ","main",0,main.mostCurrent.activityBA,main.mostCurrent,136);
+		Debug.PushSubsStack("btnOperation_Click (main) ","main",0,main.mostCurrent.activityBA,main.mostCurrent,137);
 if (RapidSub.canDelegate("btnoperation_click")) { return b4a.example.main.remoteMe.runUserSub(false, "main","btnoperation_click");}
- BA.debugLineNum = 136;BA.debugLine="Private Sub btnOperation_Click()";
-Debug.ShouldStop(128);
- BA.debugLineNum = 137;BA.debugLine="btnSender = Sender";
+ BA.debugLineNum = 137;BA.debugLine="Private Sub btnOperation_Click()";
 Debug.ShouldStop(256);
-main.mostCurrent._btnsender = RemoteObject.declareNull("anywheresoftware.b4a.AbsObjectWrapper").runMethod(false, "ConvertToWrapper", RemoteObject.createNew("anywheresoftware.b4a.objects.ButtonWrapper"), main.mostCurrent.__c.runMethod(false,"Sender",main.mostCurrent.activityBA));
- BA.debugLineNum = 138;BA.debugLine="Select btnSender.Tag";
+ BA.debugLineNum = 138;BA.debugLine="btnSender = Sender";
 Debug.ShouldStop(512);
+main.mostCurrent._btnsender = RemoteObject.declareNull("anywheresoftware.b4a.AbsObjectWrapper").runMethod(false, "ConvertToWrapper", RemoteObject.createNew("anywheresoftware.b4a.objects.ButtonWrapper"), main.mostCurrent.__c.runMethod(false,"Sender",main.mostCurrent.activityBA));
+ BA.debugLineNum = 139;BA.debugLine="Select btnSender.Tag";
+Debug.ShouldStop(1024);
 switch (BA.switchObjectToInt(main.mostCurrent._btnsender.runMethod(false,"getTag"),RemoteObject.createImmutable(("=")),RemoteObject.createImmutable(("x")))) {
 case 0: {
- BA.debugLineNum = 140;BA.debugLine="If lblResult.Text = \"∞\" Then";
-Debug.ShouldStop(2048);
-if (RemoteObject.solveBoolean("=",main.mostCurrent._lblresult.runMethod(true,"getText"),BA.ObjectToString("∞"))) { 
- BA.debugLineNum = 141;BA.debugLine="lblPrompt.Text = lblResult.Text";
+ BA.debugLineNum = 141;BA.debugLine="If lblResult.Text = \"∞\" Then";
 Debug.ShouldStop(4096);
-main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(main.mostCurrent._lblresult.runMethod(true,"getText")));
- BA.debugLineNum = 142;BA.debugLine="lblResult.Text = \"\"";
+if (RemoteObject.solveBoolean("=",main.mostCurrent._lblresult.runMethod(true,"getText"),BA.ObjectToString("∞"))) { 
+ BA.debugLineNum = 142;BA.debugLine="lblPrompt.Text = lblResult.Text";
 Debug.ShouldStop(8192);
+main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(main.mostCurrent._lblresult.runMethod(true,"getText")));
+ BA.debugLineNum = 143;BA.debugLine="lblResult.Text = \"\"";
+Debug.ShouldStop(16384);
 main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence(""));
  }else 
-{ BA.debugLineNum = 143;BA.debugLine="Else If lblPrompt.Text = \"\" Then";
-Debug.ShouldStop(16384);
-if (RemoteObject.solveBoolean("=",main.mostCurrent._lblprompt.runMethod(true,"getText"),BA.ObjectToString(""))) { 
- BA.debugLineNum = 144;BA.debugLine="Exit";
+{ BA.debugLineNum = 144;BA.debugLine="Else If lblPrompt.Text = \"\" Then";
 Debug.ShouldStop(32768);
+if (RemoteObject.solveBoolean("=",main.mostCurrent._lblprompt.runMethod(true,"getText"),BA.ObjectToString(""))) { 
+ BA.debugLineNum = 145;BA.debugLine="Exit";
+Debug.ShouldStop(65536);
 if (true) break;
  }else 
-{ BA.debugLineNum = 145;BA.debugLine="Else If Not(IsNumber(lblResult.Text)) Then";
-Debug.ShouldStop(65536);
-if (main.mostCurrent.__c.runMethod(true,"Not",(Object)(main.mostCurrent.__c.runMethod(true,"IsNumber",(Object)(main.mostCurrent._lblresult.runMethod(true,"getText"))))).<Boolean>get().booleanValue()) { 
- BA.debugLineNum = 146;BA.debugLine="lblResult.Text = \"Expression Error\"";
+{ BA.debugLineNum = 146;BA.debugLine="Else If Not(IsNumber(lblResult.Text)) Then";
 Debug.ShouldStop(131072);
+if (main.mostCurrent.__c.runMethod(true,"Not",(Object)(main.mostCurrent.__c.runMethod(true,"IsNumber",(Object)(main.mostCurrent._lblresult.runMethod(true,"getText"))))).<Boolean>get().booleanValue()) { 
+ BA.debugLineNum = 147;BA.debugLine="lblResult.Text = \"Expression Error\"";
+Debug.ShouldStop(262144);
 main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence("Expression Error"));
  }else {
- BA.debugLineNum = 148;BA.debugLine="lblPrompt.Text = lblResult.Text";
-Debug.ShouldStop(524288);
-main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(main.mostCurrent._lblresult.runMethod(true,"getText")));
- BA.debugLineNum = 149;BA.debugLine="lblResult.Text = \"\"";
+ BA.debugLineNum = 149;BA.debugLine="lblPrompt.Text = lblResult.Text";
 Debug.ShouldStop(1048576);
+main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(main.mostCurrent._lblresult.runMethod(true,"getText")));
+ BA.debugLineNum = 150;BA.debugLine="lblResult.Text = \"\"";
+Debug.ShouldStop(2097152);
 main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence(""));
  }}}
 ;
  break; }
 case 1: {
- BA.debugLineNum = 152;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"x\"";
-Debug.ShouldStop(8388608);
+ BA.debugLineNum = 153;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"x\"";
+Debug.ShouldStop(16777216);
 main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(RemoteObject.concat(main.mostCurrent._lblprompt.runMethod(true,"getText"),RemoteObject.createImmutable("x"))));
  break; }
 default: {
- BA.debugLineNum = 154;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
-Debug.ShouldStop(33554432);
+ BA.debugLineNum = 155;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
+Debug.ShouldStop(67108864);
 main.mostCurrent._lblprompt.runMethod(true,"setText",BA.ObjectToCharSequence(RemoteObject.concat(main.mostCurrent._lblprompt.runMethod(true,"getText"),main.mostCurrent._btnsender.runMethod(true,"getText"))));
  break; }
 }
 ;
- BA.debugLineNum = 156;BA.debugLine="If lblPrompt.Text.Length < 10 Then";
-Debug.ShouldStop(134217728);
-if (RemoteObject.solveBoolean("<",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 10))) { 
- BA.debugLineNum = 157;BA.debugLine="lblPrompt.TextSize = 50";
+ BA.debugLineNum = 157;BA.debugLine="If lblPrompt.Text.Length < 10 Then";
 Debug.ShouldStop(268435456);
+if (RemoteObject.solveBoolean("<",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 10))) { 
+ BA.debugLineNum = 158;BA.debugLine="lblPrompt.TextSize = 50";
+Debug.ShouldStop(536870912);
 main.mostCurrent._lblprompt.runMethod(true,"setTextSize",BA.numberCast(float.class, 50));
  }else 
-{ BA.debugLineNum = 158;BA.debugLine="Else If lblPrompt.Text.Length < 20 Then";
-Debug.ShouldStop(536870912);
-if (RemoteObject.solveBoolean("<",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 20))) { 
- BA.debugLineNum = 159;BA.debugLine="lblPrompt.TextSize = 40";
+{ BA.debugLineNum = 159;BA.debugLine="Else If lblPrompt.Text.Length < 20 Then";
 Debug.ShouldStop(1073741824);
+if (RemoteObject.solveBoolean("<",main.mostCurrent._lblprompt.runMethod(true,"getText").runMethod(true,"length"),BA.numberCast(double.class, 20))) { 
+ BA.debugLineNum = 160;BA.debugLine="lblPrompt.TextSize = 40";
+Debug.ShouldStop(-2147483648);
 main.mostCurrent._lblprompt.runMethod(true,"setTextSize",BA.numberCast(float.class, 40));
  }else {
- BA.debugLineNum = 161;BA.debugLine="lblPrompt.TextSize = 30";
-Debug.ShouldStop(1);
+ BA.debugLineNum = 162;BA.debugLine="lblPrompt.TextSize = 30";
+Debug.ShouldStop(2);
 main.mostCurrent._lblprompt.runMethod(true,"setTextSize",BA.numberCast(float.class, 30));
  }}
 ;
- BA.debugLineNum = 163;BA.debugLine="End Sub";
-Debug.ShouldStop(4);
+ BA.debugLineNum = 164;BA.debugLine="End Sub";
+Debug.ShouldStop(8);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -433,9 +433,9 @@ _res = BA.numberCast(float.class, RemoteObject.solve(new RemoteObject[] {_int1,_
  break; }
 }
 ;
- BA.debugLineNum = 77;BA.debugLine="Log(text.Replace(strRem,\"(\" & strRem & \") = \" &";
+ BA.debugLineNum = 77;BA.debugLine="Log(\"[ \" & (text.Replace(strRem,\"(\" & strRem & \"";
 Debug.ShouldStop(4096);
-main.mostCurrent.__c.runVoidMethod ("LogImpl","6196650",main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(RemoteObject.concat(RemoteObject.createImmutable("("),_strrem,RemoteObject.createImmutable(") = "),main.mostCurrent.__c.runMethod(true,"NumberFormat2",(Object)(BA.numberCast(double.class, _res)),(Object)(BA.numberCast(int.class, 0)),(Object)(BA.numberCast(int.class, 13)),(Object)(BA.numberCast(int.class, 0)),(Object)(main.mostCurrent.__c.getField(true,"False")))))),0);
+main.mostCurrent.__c.runVoidMethod ("LogImpl","6196650",RemoteObject.concat(RemoteObject.createImmutable("[ "),(RemoteObject.concat(main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(RemoteObject.concat(RemoteObject.createImmutable("("),_strrem,RemoteObject.createImmutable(")")))),RemoteObject.createImmutable(" ]"),RemoteObject.createImmutable(" = "),RemoteObject.createImmutable("[ "),main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(RemoteObject.concat(RemoteObject.createImmutable("("),main.mostCurrent.__c.runMethod(true,"NumberFormat2",(Object)(BA.numberCast(double.class, _res)),(Object)(BA.numberCast(int.class, 0)),(Object)(BA.numberCast(int.class, 13)),(Object)(BA.numberCast(int.class, 0)),(Object)(main.mostCurrent.__c.getField(true,"False"))),RemoteObject.createImmutable(")")))))),RemoteObject.createImmutable(" ]")),0);
  BA.debugLineNum = 78;BA.debugLine="text = text.Replace(strRem, NumberFormat2(res, 0";
 Debug.ShouldStop(8192);
 main.mostCurrent._text = main.mostCurrent._text.runMethod(true,"replace",(Object)(_strrem),(Object)(main.mostCurrent.__c.runMethod(true,"NumberFormat2",(Object)(BA.numberCast(double.class, _res)),(Object)(BA.numberCast(int.class, 0)),(Object)(BA.numberCast(int.class, 13)),(Object)(BA.numberCast(int.class, 0)),(Object)(main.mostCurrent.__c.getField(true,"False")))));
@@ -463,35 +463,38 @@ main.mostCurrent._text = main.mostCurrent._lblprompt.runMethod(true,"getText");
  BA.debugLineNum = 124;BA.debugLine="Log(\"START: \" & text)";
 Debug.ShouldStop(134217728);
 main.mostCurrent.__c.runVoidMethod ("LogImpl","6393218",RemoteObject.concat(RemoteObject.createImmutable("START: "),main.mostCurrent._text),0);
- BA.debugLineNum = 125;BA.debugLine="lblResult.Text = \"\"";
+ BA.debugLineNum = 125;BA.debugLine="Log(CRLF)";
 Debug.ShouldStop(268435456);
-main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence(""));
- BA.debugLineNum = 126;BA.debugLine="ProcessOperators(\"÷\")";
+main.mostCurrent.__c.runVoidMethod ("LogImpl","6393219",main.mostCurrent.__c.getField(true,"CRLF"),0);
+ BA.debugLineNum = 126;BA.debugLine="lblResult.Text = \"\"";
 Debug.ShouldStop(536870912);
-_processoperators(RemoteObject.createImmutable("÷"));
- BA.debugLineNum = 127;BA.debugLine="ProcessOperators(\"x\")";
+main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence(""));
+ BA.debugLineNum = 127;BA.debugLine="ProcessOperators(\"÷\")";
 Debug.ShouldStop(1073741824);
-_processoperators(RemoteObject.createImmutable("x"));
- BA.debugLineNum = 128;BA.debugLine="ProcessOperators(\"%\")";
+_processoperators(RemoteObject.createImmutable("÷"));
+ BA.debugLineNum = 128;BA.debugLine="ProcessOperators(\"x\")";
 Debug.ShouldStop(-2147483648);
-_processoperators(RemoteObject.createImmutable("%"));
- BA.debugLineNum = 129;BA.debugLine="ProcessOperators(\"-\")";
+_processoperators(RemoteObject.createImmutable("x"));
+ BA.debugLineNum = 129;BA.debugLine="ProcessOperators(\"%\")";
 Debug.ShouldStop(1);
-_processoperators(RemoteObject.createImmutable("-"));
- BA.debugLineNum = 130;BA.debugLine="ProcessOperators(\"+\")";
+_processoperators(RemoteObject.createImmutable("%"));
+ BA.debugLineNum = 130;BA.debugLine="ProcessOperators(\"-\")";
 Debug.ShouldStop(2);
-_processoperators(RemoteObject.createImmutable("+"));
- BA.debugLineNum = 131;BA.debugLine="Log(\"RESULT: \" & text)";
+_processoperators(RemoteObject.createImmutable("-"));
+ BA.debugLineNum = 131;BA.debugLine="ProcessOperators(\"+\")";
 Debug.ShouldStop(4);
-main.mostCurrent.__c.runVoidMethod ("LogImpl","6393225",RemoteObject.concat(RemoteObject.createImmutable("RESULT: "),main.mostCurrent._text),0);
- BA.debugLineNum = 132;BA.debugLine="lblResult.Text = text";
+_processoperators(RemoteObject.createImmutable("+"));
+ BA.debugLineNum = 132;BA.debugLine="Log(CRLF & \"RESULT: \" & text)";
 Debug.ShouldStop(8);
-main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence(main.mostCurrent._text));
- BA.debugLineNum = 133;BA.debugLine="Log(\"---------------------------------\")";
+main.mostCurrent.__c.runVoidMethod ("LogImpl","6393226",RemoteObject.concat(main.mostCurrent.__c.getField(true,"CRLF"),RemoteObject.createImmutable("RESULT: "),main.mostCurrent._text),0);
+ BA.debugLineNum = 133;BA.debugLine="lblResult.Text = text";
 Debug.ShouldStop(16);
-main.mostCurrent.__c.runVoidMethod ("LogImpl","6393227",RemoteObject.createImmutable("---------------------------------"),0);
- BA.debugLineNum = 134;BA.debugLine="End Sub";
+main.mostCurrent._lblresult.runMethod(true,"setText",BA.ObjectToCharSequence(main.mostCurrent._text));
+ BA.debugLineNum = 134;BA.debugLine="Log(\"---------------------------------\")";
 Debug.ShouldStop(32);
+main.mostCurrent.__c.runVoidMethod ("LogImpl","6393228",RemoteObject.createImmutable("---------------------------------"),0);
+ BA.debugLineNum = 135;BA.debugLine="End Sub";
+Debug.ShouldStop(64);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
