@@ -36,6 +36,7 @@ Sub Globals
 	Private lblPrompt As Label
 	Private lblResult As Label
 	Private btnSender As Button
+	Private lblLog As Label
 	Dim text As String
 End Sub
 
@@ -46,7 +47,9 @@ Sub Activity_Create(FirstTime As Boolean)
 End Sub
 
 Private Sub ProcessOperators(operator As String)
+	lblLog.Text = lblLog.Text & CRLF & " " & CRLF
 	Log(" ")
+	lblLog.Text = lblLog.Text & "Operator : (" & operator & ") ~~~~~" & CRLF
 	Log("Operator : (" & operator & ") ~~~~~")
 	Do While text.IndexOf2(operator,1) <> -1
 		If operator = "-" Then
@@ -88,6 +91,7 @@ Private Sub ProcessOperators(operator As String)
 
 '		Log("Res: "&res)
 '		Log("NFO: " & NumberFormat2(res, 1, 10, 0, False))
+		lblLog.Text = lblLog.Text & "[ " & (text.Replace(strRem,"(" & strRem & ")") & " ]" & " = " & "[ " & text.Replace(strRem, "(" & NumberFormat2(res, 0, 13, 0, False) & ")")) & " ]"
 		Log("[ " & (text.Replace(strRem,"(" & strRem & ")") & " ]" & " = " & "[ " & text.Replace(strRem, "(" & NumberFormat2(res, 0, 13, 0, False) & ")")) & " ]")
 		text = text.Replace(strRem, NumberFormat2(res, 0, 13, 0, False))
 		'Log("= " & text)
@@ -95,13 +99,12 @@ Private Sub ProcessOperators(operator As String)
     
 End Sub
 
-
 Private Sub GetNumberLeft(ind As Int) As String
 	Dim leftCtr As Int = ind
 	For row = ind - 1 To 0 Step -1
 		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "."  Then
 			leftCtr = row
-		Else If text.CharAt(row) = "-" Then
+		Else If text.CharAt(row) = "-" And row = 0 Then
 			leftCtr = row
 			Exit
 		Else
@@ -139,6 +142,8 @@ End Sub
 Private Sub Solve
 	text = lblPrompt.Text
 	Log("START: " & text)
+	lblLog.Text = ""
+	lblLog.Text = "START: " & text
 	'Log(" ")
 	lblResult.Text = ""
 	ProcessOperators("÷")
@@ -148,6 +153,7 @@ Private Sub Solve
 	ProcessOperators("-")
 	Log(" ")
 	Log("RESULT: " & text)
+	lblLog.Text = lblLog.Text & CRLF & " " & CRLF & "RESULT: " & text
 	lblResult.Text = text
 	Log("---------------------------------")
 End Sub
@@ -195,6 +201,12 @@ Private Sub btnAction_Click
 			End If
 		Case "Dot"
 			lblPrompt.Text = lblPrompt.Text & btnSender.Text
+		Case "logs"
+			If Not(lblLog.Visible) Then
+				lblLog.Visible = True
+			Else
+				lblLog.Visible = False
+			End If
 		Case Else
 			lblPrompt.Text = lblPrompt.Text & btnSender.Text
 			Solve
