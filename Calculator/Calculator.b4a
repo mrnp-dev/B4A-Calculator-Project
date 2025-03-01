@@ -127,8 +127,8 @@ End Sub
 Private Sub Solve
 	text = lblPrompt.Text
 	lblResult.Text = ""
-	ProcessOperators("X")
 	ProcessOperators("/")
+	ProcessOperators("X")
 	ProcessOperators("%")
 	ProcessOperators("-")
 	ProcessOperators("+")

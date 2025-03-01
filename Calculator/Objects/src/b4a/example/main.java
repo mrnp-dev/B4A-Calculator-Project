@@ -579,10 +579,10 @@ public static String  _solve() throws Exception{
 mostCurrent._text = mostCurrent._lblprompt.getText();
  //BA.debugLineNum = 116;BA.debugLine="lblResult.Text = \"\"";
 mostCurrent._lblresult.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 117;BA.debugLine="ProcessOperators(\"X\")";
-_processoperators("X");
- //BA.debugLineNum = 118;BA.debugLine="ProcessOperators(\"/\")";
+ //BA.debugLineNum = 117;BA.debugLine="ProcessOperators(\"/\")";
 _processoperators("/");
+ //BA.debugLineNum = 118;BA.debugLine="ProcessOperators(\"X\")";
+_processoperators("X");
  //BA.debugLineNum = 119;BA.debugLine="ProcessOperators(\"%\")";
 _processoperators("%");
  //BA.debugLineNum = 120;BA.debugLine="ProcessOperators(\"-\")";
