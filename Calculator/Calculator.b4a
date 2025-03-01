@@ -99,8 +99,11 @@ End Sub
 Private Sub GetNumberLeft(ind As Int) As String
 	Dim leftCtr As Int = ind
 	For row = ind - 1 To 0 Step -1
-		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "." Or text.CharAt(row) = "-" Then
+		If IsNumber(text.CharAt(row)) Or text.CharAt(row) = "."  Then
 			leftCtr = row
+		Else If text.CharAt(row) = "-" Then
+			leftCtr = row
+			Exit
 		Else
 			Exit
 		End If
@@ -141,8 +144,8 @@ Private Sub Solve
 	ProcessOperators("÷")
 	ProcessOperators("x")
 	ProcessOperators("%")
-	ProcessOperators("-")
 	ProcessOperators("+")
+	ProcessOperators("-")
 	Log(" ")
 	Log("RESULT: " & text)
 	lblResult.Text = text
