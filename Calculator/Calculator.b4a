@@ -46,8 +46,8 @@ Sub Activity_Create(FirstTime As Boolean)
 End Sub
 
 Private Sub ProcessOperators(operator As String)
-	Do While text.IndexOf(operator) <> -1
-		Dim ind As Int = text.IndexOf(operator)
+	Do While text.IndexOf2(operator,1) <> -1
+		Dim ind As Int = text.IndexOf2(operator,1)
 		Dim str1 As String = GetNumberLeft(ind)
 		Dim str2 As String = GetNumberRight(ind)
         
