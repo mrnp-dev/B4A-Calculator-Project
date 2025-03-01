@@ -145,7 +145,7 @@ for (;(step2 > 0 && _row <= limit2) || (step2 < 0 && _row >= limit2) ;_row = ((i
 Debug.locals.put("row", _row);
  BA.debugLineNum = 80;BA.debugLine="If IsNumber(text.CharAt(row)) Or text.CharAt(row";
 Debug.ShouldStop(32768);
-if (RemoteObject.solveBoolean(".",main.mostCurrent.__c.runMethod(true,"IsNumber",(Object)(BA.ObjectToString(main.mostCurrent._text.runMethod(true,"charAt",(Object)(BA.numberCast(int.class, _row))))))) || RemoteObject.solveBoolean("=",main.mostCurrent._text.runMethod(true,"charAt",(Object)(BA.numberCast(int.class, _row))),BA.ObjectToChar("."))) { 
+if (RemoteObject.solveBoolean(".",main.mostCurrent.__c.runMethod(true,"IsNumber",(Object)(BA.ObjectToString(main.mostCurrent._text.runMethod(true,"charAt",(Object)(BA.numberCast(int.class, _row))))))) || RemoteObject.solveBoolean("=",main.mostCurrent._text.runMethod(true,"charAt",(Object)(BA.numberCast(int.class, _row))),BA.ObjectToChar(".")) || RemoteObject.solveBoolean("=",main.mostCurrent._text.runMethod(true,"charAt",(Object)(BA.numberCast(int.class, _row))),BA.ObjectToChar("-"))) { 
  BA.debugLineNum = 81;BA.debugLine="leftCtr = row";
 Debug.ShouldStop(65536);
 _leftctr = BA.numberCast(int.class, _row);Debug.locals.put("leftCtr", _leftctr);
@@ -343,9 +343,9 @@ if (RemoteObject.solveBoolean("=",_operator,BA.ObjectToString("+"))) {
 Debug.ShouldStop(16777216);
 _res = BA.numberCast(float.class, RemoteObject.solve(new RemoteObject[] {_int1,_int2}, "+",1, 0));Debug.locals.put("res", _res);
  }else 
-{ BA.debugLineNum = 58;BA.debugLine="Else If operator = \"~\" Then";
+{ BA.debugLineNum = 58;BA.debugLine="Else If operator = \"-\" Then";
 Debug.ShouldStop(33554432);
-if (RemoteObject.solveBoolean("=",_operator,BA.ObjectToString("~"))) { 
+if (RemoteObject.solveBoolean("=",_operator,BA.ObjectToString("-"))) { 
  BA.debugLineNum = 59;BA.debugLine="res = int1 - int2";
 Debug.ShouldStop(67108864);
 _res = BA.numberCast(float.class, RemoteObject.solve(new RemoteObject[] {_int1,_int2}, "-",1, 0));Debug.locals.put("res", _res);
@@ -402,9 +402,9 @@ _processoperators(RemoteObject.createImmutable("/"));
  BA.debugLineNum = 116;BA.debugLine="ProcessOperators(\"X\")";
 Debug.ShouldStop(524288);
 _processoperators(RemoteObject.createImmutable("X"));
- BA.debugLineNum = 117;BA.debugLine="ProcessOperators(\"~\")";
+ BA.debugLineNum = 117;BA.debugLine="ProcessOperators(\"-\")";
 Debug.ShouldStop(1048576);
-_processoperators(RemoteObject.createImmutable("~"));
+_processoperators(RemoteObject.createImmutable("-"));
  BA.debugLineNum = 118;BA.debugLine="ProcessOperators(\"+\")";
 Debug.ShouldStop(2097152);
 _processoperators(RemoteObject.createImmutable("+"));

@@ -466,8 +466,8 @@ RDebugUtils.currentLine=393220;
  //BA.debugLineNum = 393220;BA.debugLine="ProcessOperators(\"X\")";
 _processoperators("X");
 RDebugUtils.currentLine=393221;
- //BA.debugLineNum = 393221;BA.debugLine="ProcessOperators(\"~\")";
-_processoperators("~");
+ //BA.debugLineNum = 393221;BA.debugLine="ProcessOperators(\"-\")";
+_processoperators("-");
 RDebugUtils.currentLine=393222;
  //BA.debugLineNum = 393222;BA.debugLine="ProcessOperators(\"+\")";
 _processoperators("+");
@@ -532,7 +532,7 @@ _row = (int) (_ind-1) ;
 for (;_row >= limit2 ;_row = _row + step2 ) {
 RDebugUtils.currentLine=262147;
  //BA.debugLineNum = 262147;BA.debugLine="If IsNumber(text.CharAt(row)) Or text.CharAt(row";
-if (anywheresoftware.b4a.keywords.Common.IsNumber(BA.ObjectToString(mostCurrent._text.charAt(_row))) || mostCurrent._text.charAt(_row)==BA.ObjectToChar(".")) { 
+if (anywheresoftware.b4a.keywords.Common.IsNumber(BA.ObjectToString(mostCurrent._text.charAt(_row))) || mostCurrent._text.charAt(_row)==BA.ObjectToChar(".") || mostCurrent._text.charAt(_row)==BA.ObjectToChar("-")) { 
 RDebugUtils.currentLine=262148;
  //BA.debugLineNum = 262148;BA.debugLine="leftCtr = row";
 _leftctr = _row;
@@ -679,8 +679,8 @@ RDebugUtils.currentLine=196632;
 _res = (float) (_int1+_int2);
  }else 
 {RDebugUtils.currentLine=196633;
- //BA.debugLineNum = 196633;BA.debugLine="Else If operator = \"~\" Then";
-if ((_operator).equals("~")) { 
+ //BA.debugLineNum = 196633;BA.debugLine="Else If operator = \"-\" Then";
+if ((_operator).equals("-")) { 
 RDebugUtils.currentLine=196634;
  //BA.debugLineNum = 196634;BA.debugLine="res = int1 - int2";
 _res = (float) (_int1-_int2);

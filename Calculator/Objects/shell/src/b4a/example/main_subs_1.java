@@ -343,9 +343,9 @@ if (RemoteObject.solveBoolean("=",_operator,BA.ObjectToString("+"))) {
 Debug.ShouldStop(16777216);
 _res = BA.numberCast(float.class, RemoteObject.solve(new RemoteObject[] {_int1,_int2}, "+",1, 0));Debug.locals.put("res", _res);
  }else 
-{ BA.debugLineNum = 58;BA.debugLine="Else If operator = \"~\" Then";
+{ BA.debugLineNum = 58;BA.debugLine="Else If operator = \"-\" Then";
 Debug.ShouldStop(33554432);
-if (RemoteObject.solveBoolean("=",_operator,BA.ObjectToString("~"))) { 
+if (RemoteObject.solveBoolean("=",_operator,BA.ObjectToString("-"))) { 
  BA.debugLineNum = 59;BA.debugLine="res = int1 - int2";
 Debug.ShouldStop(67108864);
 _res = BA.numberCast(float.class, RemoteObject.solve(new RemoteObject[] {_int1,_int2}, "-",1, 0));Debug.locals.put("res", _res);
@@ -402,9 +402,9 @@ _processoperators(RemoteObject.createImmutable("/"));
  BA.debugLineNum = 116;BA.debugLine="ProcessOperators(\"X\")";
 Debug.ShouldStop(524288);
 _processoperators(RemoteObject.createImmutable("X"));
- BA.debugLineNum = 117;BA.debugLine="ProcessOperators(\"~\")";
+ BA.debugLineNum = 117;BA.debugLine="ProcessOperators(\"-\")";
 Debug.ShouldStop(1048576);
-_processoperators(RemoteObject.createImmutable("~"));
+_processoperators(RemoteObject.createImmutable("-"));
  BA.debugLineNum = 118;BA.debugLine="ProcessOperators(\"+\")";
 Debug.ShouldStop(2097152);
 _processoperators(RemoteObject.createImmutable("+"));

@@ -10,7 +10,7 @@ main,btnaction_click,0,0,134,151
 ,btnsender,,lblprompt,,lblresult,,text
 ,btnsender,,text
 ,solve,,processoperators,,getnumberleft,,getnumberright
-main,solve,0,1,112,120
+main,solve,0,0,112,120
 ,text,,lblprompt,,lblresult
 ,text
 ,processoperators,,getnumberleft,,getnumberright
@@ -18,7 +18,7 @@ main,btnoperation_click,0,0,122,132
 ,btnsender,,lblprompt,,lblresult,,text
 ,btnsender,,text
 ,solve,,processoperators,,getnumberleft,,getnumberright
-main,getnumberleft,0,1,77,93
+main,getnumberleft,0,0,77,93
 ,text
 
 
@@ -34,7 +34,7 @@ main,process_globals,0,1,15,19
 
 
 
-main,processoperators,0,1,33,74
+main,processoperators,0,0,33,74
 ,text,,lblresult
 ,text
 ,getnumberleft,,getnumberright
