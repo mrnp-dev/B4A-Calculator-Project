@@ -37,12 +37,16 @@ Sub Globals
 	Private lblResult As Label
 	Private btnSender As Button
 	Private lblLog As Label
+	Private edtPrompt As EditText
+	'Dim anmRes As Animation
 	Dim text As String
+	Dim promptTxtColor As Int
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
 	Activity.LoadLayout("Layout")
-	
+	edtPrompt.Enabled = False
+	promptTxtColor = lblPrompt.TextColor
 	'Dim r As Reflector
 End Sub
 
@@ -68,11 +72,17 @@ Private Sub ProcessOperators(operator As String)
 			text = ""
 			Return ' Exit the subroutine if invalid
 		End If
-
+		
+		
 		Dim strRem As String = strLeft & operator & strRight
 		Dim int1 As Float = strLeft.As(Float)
 		Dim int2 As Float = strRight.As(Float)
 		Dim res As Float
+		
+		If operator = "÷" And int2 = 0 Then
+			text = "Cannot divide by 0"
+			Return
+		End If
 
 		Select operator
 			Case "x"
@@ -162,24 +172,105 @@ End Sub
 
 Private Sub btnOperation_Click()
 	btnSender = Sender
+	Dim prev As Char
+	If lblPrompt.Text.Length > 0 Then
+		prev = lblPrompt.Text.CharAt(lblPrompt.Text.Length - 1)
+	Else
+		' Handle the case where the text is empty
+		prev = "`"
+	End If
+		
+	If prev = "-" And lblPrompt.Text.Length = 1 Then
+		Return
+	End If
+	
 	Select btnSender.Tag
 		Case "="
 			If lblResult.Text = "∞" Then
-				lblPrompt.Text = lblResult.Text
-				lblResult.Text = ""
+				lblResult.SetTextSizeAnimated(200,40)
+				
+				Exit
 			Else If lblPrompt.Text = "" Then
+				Exit
+			Else If lblResult.Text = "Cannot divide by 0" Then
 				Exit
 			Else If Not(IsNumber(lblResult.Text)) Then
 				lblResult.Text = "Expression Error"
 			Else
+				lblPopAnimation(lblPrompt, 400,Colors.Yellow)
 				lblPrompt.Text = lblResult.Text				
 				lblResult.Text = ""
 			End If
-		Case "x"
-			lblPrompt.Text = lblPrompt.Text & "x"
+		Case "-"
+			Select prev
+				Case "-"				
+					If lblPrompt.Text.Length > 1 Then
+						Dim prev2 As Char = lblPrompt.Text.CharAt(lblPrompt.Text.Length - 2)
+					Else
+						Exit
+					End If
+					
+					lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+					lblPrompt.Text = lblPrompt.Text & "+"
+					If prev2 = "+" Or prev2 = "x" Or prev2 = "%" Or prev2 = "÷" Then
+						lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 2)
+						lblPrompt.Text = lblPrompt.Text & "+"
+					End If
+					
+				Case "+"
+					lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+					lblPrompt.Text = lblPrompt.Text & "-"
+					
+				Case Else
+					lblPrompt.Text = lblPrompt.Text & btnSender.Text
+				If lblPrompt.TextColor <> promptTxtColor Then
+				lblPrompt.SetTextColorAnimated(400,promptTxtColor)
+				End If
+			End Select
+			Solve
+			
+		Case "+"			
+			Select prev
+				Case "`"
+					Return
+				Case "-"
+					lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+					lblPrompt.Text = lblPrompt.Text & "+"
+				Case "+"
+					Exit
+				Case "x","÷","%"
+					lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+					lblPrompt.Text = lblPrompt.Text & "+"
+				Case Else
+					lblPrompt.Text = lblPrompt.Text & btnSender.Text
+				If lblPrompt.TextColor <> promptTxtColor Then
+				lblPrompt.SetTextColorAnimated(400,promptTxtColor)
+				End If
+			End Select
+			Solve
 		Case Else
+			Select prev
+				Case "`"
+					Return
+				Case "-"
+					lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+				Case "+"
+					lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+				Case "x"
+					lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+				Case "%"
+					lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+				Case "÷"
+					lblPrompt.Text = lblPrompt.Text.SubString2(0, lblPrompt.Text.Length - 1)
+			End Select
+			
+			If lblPrompt.TextColor <> promptTxtColor Then
+				lblPrompt.SetTextColorAnimated(400,promptTxtColor)
+			End If
 			lblPrompt.Text = lblPrompt.Text & btnSender.Text
+			Solve
 	End Select
+	'lblPrompt.SetTextColorAnimated(1000,promptTxtColor)
 	If lblPrompt.Text.Length < 10 Then
 		lblPrompt.TextSize = 50
 	Else If lblPrompt.Text.Length < 20 Then
@@ -191,6 +282,7 @@ End Sub
 
 Private Sub btnAction_Click
 	btnSender = Sender
+	
 	Select btnSender.Tag
 		Case "AC"
 			lblPrompt.Text = ""
@@ -213,6 +305,9 @@ Private Sub btnAction_Click
 			lblPrompt.Text = lblPrompt.Text & btnSender.Text
 			Solve
 	End Select
+	If lblPrompt.TextColor <> promptTxtColor Then
+		lblPrompt.SetTextColorAnimated(400,promptTxtColor)
+	End If
 	If lblPrompt.Text.Length < 10 Then
 		lblPrompt.TextSize = 50
 	Else If lblPrompt.Text.Length < 20 Then
@@ -220,4 +315,13 @@ Private Sub btnAction_Click
 	Else
 		lblPrompt.TextSize = 30
 	End If
+End Sub
+
+Private Sub lblPopAnimation(label As Label, time As Int,color As Int)
+	Log(label.TextSize)
+	Dim origSize As Float = label.TextSize
+	label.TextSize = 10
+	
+	label.SetTextColorAnimated(time,color)
+	label.SetTextSizeAnimated(time,origSize)
 End Sub
