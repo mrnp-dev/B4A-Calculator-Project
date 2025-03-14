@@ -34,7 +34,7 @@ public class main extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new BA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.main");
+			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.main");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -335,6 +335,47 @@ public class main extends Activity implements B4AActivity{
             
     }
 
+
+
+public static void initializeProcessGlobals() {
+    
+    if (main.processGlobalsRun == false) {
+	    main.processGlobalsRun = true;
+		try {
+		        		
+        } catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+    }
+}
+public static boolean isAnyActivityVisible() {
+    boolean vis = false;
+vis = vis | (main.mostCurrent != null);
+return vis;}
+
+private static BA killProgramHelper(BA ba) {
+    if (ba == null)
+        return null;
+    anywheresoftware.b4a.BA.SharedProcessBA sharedProcessBA = ba.sharedProcessBA;
+    if (sharedProcessBA == null || sharedProcessBA.activityBA == null)
+        return null;
+    return sharedProcessBA.activityBA.get();
+}
+public static void killProgram() {
+     {
+            Activity __a = null;
+            if (main.previousOne != null) {
+				__a = main.previousOne.get();
+			}
+            else {
+                BA ba = killProgramHelper(main.mostCurrent == null ? null : main.mostCurrent.processBA);
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
+BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, starter.class));
+}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public static anywheresoftware.b4a.objects.B4XViewWrapper.XUI _xui = null;
 public anywheresoftware.b4a.objects.LabelWrapper _lblprompt = null;
@@ -345,401 +386,576 @@ public anywheresoftware.b4a.objects.EditTextWrapper _edtprompt = null;
 public static String _text = "";
 public static int _prompttxtcolor = 0;
 public b4a.example.starter _starter = null;
-
-public static boolean isAnyActivityVisible() {
-    boolean vis = false;
-vis = vis | (main.mostCurrent != null);
-return vis;}
 public static String  _activity_create(boolean _firsttime) throws Exception{
- //BA.debugLineNum = 33;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
- //BA.debugLineNum = 34;BA.debugLine="Activity.LoadLayout(\"Layout\")";
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
+RDebugUtils.currentLine=131072;
+ //BA.debugLineNum = 131072;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+RDebugUtils.currentLine=131073;
+ //BA.debugLineNum = 131073;BA.debugLine="Activity.LoadLayout(\"Layout\")";
 mostCurrent._activity.LoadLayout("Layout",mostCurrent.activityBA);
- //BA.debugLineNum = 35;BA.debugLine="edtPrompt.Enabled = False";
+RDebugUtils.currentLine=131074;
+ //BA.debugLineNum = 131074;BA.debugLine="edtPrompt.Enabled = False";
 mostCurrent._edtprompt.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 36;BA.debugLine="promptTxtColor = lblPrompt.TextColor";
+RDebugUtils.currentLine=131075;
+ //BA.debugLineNum = 131075;BA.debugLine="promptTxtColor = lblPrompt.TextColor";
 _prompttxtcolor = mostCurrent._lblprompt.getTextColor();
- //BA.debugLineNum = 38;BA.debugLine="End Sub";
+RDebugUtils.currentLine=131077;
+ //BA.debugLineNum = 131077;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btnaction_click() throws Exception{
- //BA.debugLineNum = 270;BA.debugLine="Private Sub btnAction_Click";
- //BA.debugLineNum = 271;BA.debugLine="btnSender = Sender";
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnaction_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnaction_click", null));}
+RDebugUtils.currentLine=524288;
+ //BA.debugLineNum = 524288;BA.debugLine="Private Sub btnAction_Click";
+RDebugUtils.currentLine=524289;
+ //BA.debugLineNum = 524289;BA.debugLine="btnSender = Sender";
 mostCurrent._btnsender = (anywheresoftware.b4a.objects.ButtonWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.ButtonWrapper(), (android.widget.Button)(anywheresoftware.b4a.keywords.Common.Sender(mostCurrent.activityBA)));
- //BA.debugLineNum = 273;BA.debugLine="Select btnSender.Tag";
+RDebugUtils.currentLine=524291;
+ //BA.debugLineNum = 524291;BA.debugLine="Select btnSender.Tag";
 switch (BA.switchObjectToInt(mostCurrent._btnsender.getTag(),(Object)("AC"),(Object)("BS"),(Object)("Dot"),(Object)("logs"))) {
 case 0: {
- //BA.debugLineNum = 275;BA.debugLine="lblPrompt.Text = \"\"";
+RDebugUtils.currentLine=524293;
+ //BA.debugLineNum = 524293;BA.debugLine="lblPrompt.Text = \"\"";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 276;BA.debugLine="lblResult.Text = \"\"";
+RDebugUtils.currentLine=524294;
+ //BA.debugLineNum = 524294;BA.debugLine="lblResult.Text = \"\"";
 mostCurrent._lblresult.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 277;BA.debugLine="lblLog.Text = \"\"";
+RDebugUtils.currentLine=524295;
+ //BA.debugLineNum = 524295;BA.debugLine="lblLog.Text = \"\"";
 mostCurrent._lbllog.setText(BA.ObjectToCharSequence(""));
  break; }
 case 1: {
- //BA.debugLineNum = 279;BA.debugLine="If lblPrompt.Text.Length > 0 Then";
+RDebugUtils.currentLine=524297;
+ //BA.debugLineNum = 524297;BA.debugLine="If lblPrompt.Text.Length > 0 Then";
 if (mostCurrent._lblprompt.getText().length()>0) { 
- //BA.debugLineNum = 280;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=524298;
+ //BA.debugLineNum = 524298;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
- //BA.debugLineNum = 281;BA.debugLine="Solve";
+RDebugUtils.currentLine=524299;
+ //BA.debugLineNum = 524299;BA.debugLine="Solve";
 _solve();
  };
  break; }
 case 2: {
- //BA.debugLineNum = 284;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
+RDebugUtils.currentLine=524302;
+ //BA.debugLineNum = 524302;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+mostCurrent._btnsender.getText()));
  break; }
 case 3: {
- //BA.debugLineNum = 286;BA.debugLine="If Not(lblLog.Visible) Then";
+RDebugUtils.currentLine=524304;
+ //BA.debugLineNum = 524304;BA.debugLine="If Not(lblLog.Visible) Then";
 if (anywheresoftware.b4a.keywords.Common.Not(mostCurrent._lbllog.getVisible())) { 
- //BA.debugLineNum = 287;BA.debugLine="lblLog.Visible = True";
+RDebugUtils.currentLine=524305;
+ //BA.debugLineNum = 524305;BA.debugLine="lblLog.Visible = True";
 mostCurrent._lbllog.setVisible(anywheresoftware.b4a.keywords.Common.True);
  }else {
- //BA.debugLineNum = 289;BA.debugLine="lblLog.Visible = False";
+RDebugUtils.currentLine=524307;
+ //BA.debugLineNum = 524307;BA.debugLine="lblLog.Visible = False";
 mostCurrent._lbllog.setVisible(anywheresoftware.b4a.keywords.Common.False);
  };
  break; }
 default: {
- //BA.debugLineNum = 292;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
+RDebugUtils.currentLine=524310;
+ //BA.debugLineNum = 524310;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+mostCurrent._btnsender.getText()));
- //BA.debugLineNum = 293;BA.debugLine="Solve";
+RDebugUtils.currentLine=524311;
+ //BA.debugLineNum = 524311;BA.debugLine="Solve";
 _solve();
  break; }
 }
 ;
- //BA.debugLineNum = 295;BA.debugLine="If lblPrompt.TextColor <> promptTxtColor Then";
+RDebugUtils.currentLine=524313;
+ //BA.debugLineNum = 524313;BA.debugLine="If lblPrompt.TextColor <> promptTxtColor Then";
 if (mostCurrent._lblprompt.getTextColor()!=_prompttxtcolor) { 
- //BA.debugLineNum = 296;BA.debugLine="lblPrompt.SetTextColorAnimated(400,promptTxtColo";
+RDebugUtils.currentLine=524314;
+ //BA.debugLineNum = 524314;BA.debugLine="lblPrompt.SetTextColorAnimated(400,promptTxtColo";
 mostCurrent._lblprompt.SetTextColorAnimated((int) (400),_prompttxtcolor);
  };
- //BA.debugLineNum = 298;BA.debugLine="If lblPrompt.Text.Length < 10 Then";
+RDebugUtils.currentLine=524316;
+ //BA.debugLineNum = 524316;BA.debugLine="If lblPrompt.Text.Length < 10 Then";
 if (mostCurrent._lblprompt.getText().length()<10) { 
- //BA.debugLineNum = 299;BA.debugLine="lblPrompt.TextSize = 50";
+RDebugUtils.currentLine=524317;
+ //BA.debugLineNum = 524317;BA.debugLine="lblPrompt.TextSize = 50";
 mostCurrent._lblprompt.setTextSize((float) (50));
- }else if(mostCurrent._lblprompt.getText().length()<20) { 
- //BA.debugLineNum = 301;BA.debugLine="lblPrompt.TextSize = 40";
+ }else 
+{RDebugUtils.currentLine=524318;
+ //BA.debugLineNum = 524318;BA.debugLine="Else If lblPrompt.Text.Length < 20 Then";
+if (mostCurrent._lblprompt.getText().length()<20) { 
+RDebugUtils.currentLine=524319;
+ //BA.debugLineNum = 524319;BA.debugLine="lblPrompt.TextSize = 40";
 mostCurrent._lblprompt.setTextSize((float) (40));
  }else {
- //BA.debugLineNum = 303;BA.debugLine="lblPrompt.TextSize = 30";
+RDebugUtils.currentLine=524321;
+ //BA.debugLineNum = 524321;BA.debugLine="lblPrompt.TextSize = 30";
 mostCurrent._lblprompt.setTextSize((float) (30));
- };
- //BA.debugLineNum = 305;BA.debugLine="End Sub";
+ }}
+;
+RDebugUtils.currentLine=524323;
+ //BA.debugLineNum = 524323;BA.debugLine="End Sub";
+return "";
+}
+public static String  _solve() throws Exception{
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "solve", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "solve", null));}
+RDebugUtils.currentLine=393216;
+ //BA.debugLineNum = 393216;BA.debugLine="Private Sub Solve";
+RDebugUtils.currentLine=393217;
+ //BA.debugLineNum = 393217;BA.debugLine="text = lblPrompt.Text";
+mostCurrent._text = mostCurrent._lblprompt.getText();
+RDebugUtils.currentLine=393218;
+ //BA.debugLineNum = 393218;BA.debugLine="Log(\"START: \" & text)";
+anywheresoftware.b4a.keywords.Common.LogImpl("4393218","START: "+mostCurrent._text,0);
+RDebugUtils.currentLine=393219;
+ //BA.debugLineNum = 393219;BA.debugLine="lblLog.Text = \"\"";
+mostCurrent._lbllog.setText(BA.ObjectToCharSequence(""));
+RDebugUtils.currentLine=393220;
+ //BA.debugLineNum = 393220;BA.debugLine="lblLog.Text = \"START: \" & text & CRLF";
+mostCurrent._lbllog.setText(BA.ObjectToCharSequence("START: "+mostCurrent._text+anywheresoftware.b4a.keywords.Common.CRLF));
+RDebugUtils.currentLine=393222;
+ //BA.debugLineNum = 393222;BA.debugLine="lblResult.Text = \"\"";
+mostCurrent._lblresult.setText(BA.ObjectToCharSequence(""));
+RDebugUtils.currentLine=393223;
+ //BA.debugLineNum = 393223;BA.debugLine="ProcessOperators(\"÷\")";
+_processoperators("÷");
+RDebugUtils.currentLine=393224;
+ //BA.debugLineNum = 393224;BA.debugLine="ProcessOperators(\"x\")";
+_processoperators("x");
+RDebugUtils.currentLine=393225;
+ //BA.debugLineNum = 393225;BA.debugLine="ProcessOperators(\"%\")";
+_processoperators("%");
+RDebugUtils.currentLine=393226;
+ //BA.debugLineNum = 393226;BA.debugLine="ProcessOperators(\"+\")";
+_processoperators("+");
+RDebugUtils.currentLine=393227;
+ //BA.debugLineNum = 393227;BA.debugLine="ProcessOperators(\"-\")";
+_processoperators("-");
+RDebugUtils.currentLine=393228;
+ //BA.debugLineNum = 393228;BA.debugLine="Log(\" \")";
+anywheresoftware.b4a.keywords.Common.LogImpl("4393228"," ",0);
+RDebugUtils.currentLine=393229;
+ //BA.debugLineNum = 393229;BA.debugLine="Log(\"RESULT: \" & text)";
+anywheresoftware.b4a.keywords.Common.LogImpl("4393229","RESULT: "+mostCurrent._text,0);
+RDebugUtils.currentLine=393230;
+ //BA.debugLineNum = 393230;BA.debugLine="lblLog.Text = lblLog.Text & CRLF & \" \" & CRLF & \"";
+mostCurrent._lbllog.setText(BA.ObjectToCharSequence(mostCurrent._lbllog.getText()+anywheresoftware.b4a.keywords.Common.CRLF+" "+anywheresoftware.b4a.keywords.Common.CRLF+"RESULT: "+mostCurrent._text));
+RDebugUtils.currentLine=393231;
+ //BA.debugLineNum = 393231;BA.debugLine="lblResult.Text = text";
+mostCurrent._lblresult.setText(BA.ObjectToCharSequence(mostCurrent._text));
+RDebugUtils.currentLine=393232;
+ //BA.debugLineNum = 393232;BA.debugLine="Log(\"---------------------------------\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("4393232","---------------------------------",0);
+RDebugUtils.currentLine=393233;
+ //BA.debugLineNum = 393233;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btnoperation_click() throws Exception{
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnoperation_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnoperation_click", null));}
 char _prev = '\0';
 char _prev2 = '\0';
- //BA.debugLineNum = 160;BA.debugLine="Private Sub btnOperation_Click()";
- //BA.debugLineNum = 161;BA.debugLine="btnSender = Sender";
+RDebugUtils.currentLine=458752;
+ //BA.debugLineNum = 458752;BA.debugLine="Private Sub btnOperation_Click()";
+RDebugUtils.currentLine=458753;
+ //BA.debugLineNum = 458753;BA.debugLine="btnSender = Sender";
 mostCurrent._btnsender = (anywheresoftware.b4a.objects.ButtonWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.ButtonWrapper(), (android.widget.Button)(anywheresoftware.b4a.keywords.Common.Sender(mostCurrent.activityBA)));
- //BA.debugLineNum = 162;BA.debugLine="Dim prev As Char";
+RDebugUtils.currentLine=458754;
+ //BA.debugLineNum = 458754;BA.debugLine="Dim prev As Char";
 _prev = '\0';
- //BA.debugLineNum = 163;BA.debugLine="If lblPrompt.Text.Length > 0 Then";
+RDebugUtils.currentLine=458755;
+ //BA.debugLineNum = 458755;BA.debugLine="If lblPrompt.Text.Length > 0 Then";
 if (mostCurrent._lblprompt.getText().length()>0) { 
- //BA.debugLineNum = 164;BA.debugLine="prev = lblPrompt.Text.CharAt(lblPrompt.Text.Leng";
+RDebugUtils.currentLine=458756;
+ //BA.debugLineNum = 458756;BA.debugLine="prev = lblPrompt.Text.CharAt(lblPrompt.Text.Leng";
 _prev = mostCurrent._lblprompt.getText().charAt((int) (mostCurrent._lblprompt.getText().length()-1));
  }else {
- //BA.debugLineNum = 167;BA.debugLine="prev = \"`\"";
+RDebugUtils.currentLine=458759;
+ //BA.debugLineNum = 458759;BA.debugLine="prev = \"`\"";
 _prev = BA.ObjectToChar("`");
  };
- //BA.debugLineNum = 170;BA.debugLine="If prev = \"-\" And lblPrompt.Text.Length = 1 Then";
+RDebugUtils.currentLine=458762;
+ //BA.debugLineNum = 458762;BA.debugLine="If prev = \"-\" And lblPrompt.Text.Length = 1 Then";
 if (_prev==BA.ObjectToChar("-") && mostCurrent._lblprompt.getText().length()==1) { 
- //BA.debugLineNum = 171;BA.debugLine="Return";
+RDebugUtils.currentLine=458763;
+ //BA.debugLineNum = 458763;BA.debugLine="Return";
 if (true) return "";
  };
- //BA.debugLineNum = 174;BA.debugLine="Select btnSender.Tag";
+RDebugUtils.currentLine=458766;
+ //BA.debugLineNum = 458766;BA.debugLine="Select btnSender.Tag";
 switch (BA.switchObjectToInt(mostCurrent._btnsender.getTag(),(Object)("="),(Object)("-"),(Object)("+"))) {
 case 0: {
- //BA.debugLineNum = 176;BA.debugLine="If lblResult.Text = \"∞\" Then";
+RDebugUtils.currentLine=458768;
+ //BA.debugLineNum = 458768;BA.debugLine="If lblResult.Text = \"∞\" Then";
 if ((mostCurrent._lblresult.getText()).equals("∞")) { 
- //BA.debugLineNum = 177;BA.debugLine="lblResult.SetTextSizeAnimated(200,40)";
+RDebugUtils.currentLine=458769;
+ //BA.debugLineNum = 458769;BA.debugLine="lblResult.SetTextSizeAnimated(200,40)";
 mostCurrent._lblresult.SetTextSizeAnimated((int) (200),(float) (40));
- //BA.debugLineNum = 179;BA.debugLine="Exit";
+RDebugUtils.currentLine=458771;
+ //BA.debugLineNum = 458771;BA.debugLine="Exit";
 if (true) break;
- }else if((mostCurrent._lblprompt.getText()).equals("")) { 
- //BA.debugLineNum = 181;BA.debugLine="Exit";
+ }else 
+{RDebugUtils.currentLine=458772;
+ //BA.debugLineNum = 458772;BA.debugLine="Else If lblPrompt.Text = \"\" Then";
+if ((mostCurrent._lblprompt.getText()).equals("")) { 
+RDebugUtils.currentLine=458773;
+ //BA.debugLineNum = 458773;BA.debugLine="Exit";
 if (true) break;
- }else if((mostCurrent._lblresult.getText()).equals("Cannot divide by 0")) { 
- //BA.debugLineNum = 183;BA.debugLine="Exit";
+ }else 
+{RDebugUtils.currentLine=458774;
+ //BA.debugLineNum = 458774;BA.debugLine="Else If lblResult.Text = \"Cannot divide by 0\" T";
+if ((mostCurrent._lblresult.getText()).equals("Cannot divide by 0")) { 
+RDebugUtils.currentLine=458775;
+ //BA.debugLineNum = 458775;BA.debugLine="Exit";
 if (true) break;
- }else if(anywheresoftware.b4a.keywords.Common.Not(anywheresoftware.b4a.keywords.Common.IsNumber(mostCurrent._lblresult.getText()))) { 
- //BA.debugLineNum = 185;BA.debugLine="lblResult.Text = \"Expression Error\"";
+ }else 
+{RDebugUtils.currentLine=458776;
+ //BA.debugLineNum = 458776;BA.debugLine="Else If Not(IsNumber(lblResult.Text)) Then";
+if (anywheresoftware.b4a.keywords.Common.Not(anywheresoftware.b4a.keywords.Common.IsNumber(mostCurrent._lblresult.getText()))) { 
+RDebugUtils.currentLine=458777;
+ //BA.debugLineNum = 458777;BA.debugLine="lblResult.Text = \"Expression Error\"";
 mostCurrent._lblresult.setText(BA.ObjectToCharSequence("Expression Error"));
  }else {
- //BA.debugLineNum = 187;BA.debugLine="lblPopAnimation(lblPrompt, 400,Colors.Yellow)";
+RDebugUtils.currentLine=458779;
+ //BA.debugLineNum = 458779;BA.debugLine="lblPopAnimation(lblPrompt, 400,Colors.Yellow)";
 _lblpopanimation(mostCurrent._lblprompt,(int) (400),anywheresoftware.b4a.keywords.Common.Colors.Yellow);
- //BA.debugLineNum = 188;BA.debugLine="lblPrompt.Text = lblResult.Text";
+RDebugUtils.currentLine=458780;
+ //BA.debugLineNum = 458780;BA.debugLine="lblPrompt.Text = lblResult.Text";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblresult.getText()));
- //BA.debugLineNum = 189;BA.debugLine="lblResult.Text = \"\"";
+RDebugUtils.currentLine=458781;
+ //BA.debugLineNum = 458781;BA.debugLine="lblResult.Text = \"\"";
 mostCurrent._lblresult.setText(BA.ObjectToCharSequence(""));
- };
+ }}}}
+;
  break; }
 case 1: {
- //BA.debugLineNum = 192;BA.debugLine="Select prev";
+RDebugUtils.currentLine=458784;
+ //BA.debugLineNum = 458784;BA.debugLine="Select prev";
 switch (BA.switchObjectToInt(_prev,BA.ObjectToChar("-"),BA.ObjectToChar("+"))) {
 case 0: {
- //BA.debugLineNum = 194;BA.debugLine="If lblPrompt.Text.Length > 1 Then";
+RDebugUtils.currentLine=458786;
+ //BA.debugLineNum = 458786;BA.debugLine="If lblPrompt.Text.Length > 1 Then";
 if (mostCurrent._lblprompt.getText().length()>1) { 
- //BA.debugLineNum = 195;BA.debugLine="Dim prev2 As Char = lblPrompt.Text.CharAt(lb";
+RDebugUtils.currentLine=458787;
+ //BA.debugLineNum = 458787;BA.debugLine="Dim prev2 As Char = lblPrompt.Text.CharAt(lb";
 _prev2 = mostCurrent._lblprompt.getText().charAt((int) (mostCurrent._lblprompt.getText().length()-2));
  }else {
- //BA.debugLineNum = 197;BA.debugLine="Exit";
+RDebugUtils.currentLine=458789;
+ //BA.debugLineNum = 458789;BA.debugLine="Exit";
 if (true) break;
  };
- //BA.debugLineNum = 200;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=458792;
+ //BA.debugLineNum = 458792;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
- //BA.debugLineNum = 201;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"+\"";
+RDebugUtils.currentLine=458793;
+ //BA.debugLineNum = 458793;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"+\"";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+"+"));
- //BA.debugLineNum = 202;BA.debugLine="If prev2 = \"+\" Or prev2 = \"x\" Or prev2 = \"%\"";
+RDebugUtils.currentLine=458794;
+ //BA.debugLineNum = 458794;BA.debugLine="If prev2 = \"+\" Or prev2 = \"x\" Or prev2 = \"%\"";
 if (_prev2==BA.ObjectToChar("+") || _prev2==BA.ObjectToChar("x") || _prev2==BA.ObjectToChar("%") || _prev2==BA.ObjectToChar("÷")) { 
- //BA.debugLineNum = 203;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0";
+RDebugUtils.currentLine=458795;
+ //BA.debugLineNum = 458795;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-2))));
- //BA.debugLineNum = 204;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"+\"";
+RDebugUtils.currentLine=458796;
+ //BA.debugLineNum = 458796;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"+\"";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+"+"));
  };
  break; }
 case 1: {
- //BA.debugLineNum = 208;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=458800;
+ //BA.debugLineNum = 458800;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
- //BA.debugLineNum = 209;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"-\"";
+RDebugUtils.currentLine=458801;
+ //BA.debugLineNum = 458801;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"-\"";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+"-"));
  break; }
 default: {
- //BA.debugLineNum = 212;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.T";
+RDebugUtils.currentLine=458804;
+ //BA.debugLineNum = 458804;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.T";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+mostCurrent._btnsender.getText()));
- //BA.debugLineNum = 213;BA.debugLine="If lblPrompt.TextColor <> promptTxtColor Then";
+RDebugUtils.currentLine=458805;
+ //BA.debugLineNum = 458805;BA.debugLine="If lblPrompt.TextColor <> promptTxtColor Then";
 if (mostCurrent._lblprompt.getTextColor()!=_prompttxtcolor) { 
- //BA.debugLineNum = 214;BA.debugLine="lblPrompt.SetTextColorAnimated(400,promptTxtCo";
+RDebugUtils.currentLine=458806;
+ //BA.debugLineNum = 458806;BA.debugLine="lblPrompt.SetTextColorAnimated(400,promptTxtCo";
 mostCurrent._lblprompt.SetTextColorAnimated((int) (400),_prompttxtcolor);
  };
  break; }
 }
 ;
- //BA.debugLineNum = 217;BA.debugLine="Solve";
+RDebugUtils.currentLine=458809;
+ //BA.debugLineNum = 458809;BA.debugLine="Solve";
 _solve();
  break; }
 case 2: {
- //BA.debugLineNum = 220;BA.debugLine="Select prev";
+RDebugUtils.currentLine=458812;
+ //BA.debugLineNum = 458812;BA.debugLine="Select prev";
 switch (BA.switchObjectToInt(_prev,BA.ObjectToChar("`"),BA.ObjectToChar("-"),BA.ObjectToChar("+"),BA.ObjectToChar("x"),BA.ObjectToChar("÷"),BA.ObjectToChar("%"))) {
 case 0: {
- //BA.debugLineNum = 222;BA.debugLine="Return";
+RDebugUtils.currentLine=458814;
+ //BA.debugLineNum = 458814;BA.debugLine="Return";
 if (true) return "";
  break; }
 case 1: {
- //BA.debugLineNum = 224;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=458816;
+ //BA.debugLineNum = 458816;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
- //BA.debugLineNum = 225;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"+\"";
+RDebugUtils.currentLine=458817;
+ //BA.debugLineNum = 458817;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"+\"";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+"+"));
  break; }
 case 2: {
- //BA.debugLineNum = 227;BA.debugLine="Exit";
+RDebugUtils.currentLine=458819;
+ //BA.debugLineNum = 458819;BA.debugLine="Exit";
 if (true) break;
  break; }
 case 3: 
 case 4: 
 case 5: {
- //BA.debugLineNum = 229;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=458821;
+ //BA.debugLineNum = 458821;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
- //BA.debugLineNum = 230;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"+\"";
+RDebugUtils.currentLine=458822;
+ //BA.debugLineNum = 458822;BA.debugLine="lblPrompt.Text = lblPrompt.Text & \"+\"";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+"+"));
  break; }
 default: {
- //BA.debugLineNum = 232;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.T";
+RDebugUtils.currentLine=458824;
+ //BA.debugLineNum = 458824;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.T";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+mostCurrent._btnsender.getText()));
- //BA.debugLineNum = 233;BA.debugLine="If lblPrompt.TextColor <> promptTxtColor Then";
+RDebugUtils.currentLine=458825;
+ //BA.debugLineNum = 458825;BA.debugLine="If lblPrompt.TextColor <> promptTxtColor Then";
 if (mostCurrent._lblprompt.getTextColor()!=_prompttxtcolor) { 
- //BA.debugLineNum = 234;BA.debugLine="lblPrompt.SetTextColorAnimated(400,promptTxtCo";
+RDebugUtils.currentLine=458826;
+ //BA.debugLineNum = 458826;BA.debugLine="lblPrompt.SetTextColorAnimated(400,promptTxtCo";
 mostCurrent._lblprompt.SetTextColorAnimated((int) (400),_prompttxtcolor);
  };
  break; }
 }
 ;
- //BA.debugLineNum = 237;BA.debugLine="Solve";
+RDebugUtils.currentLine=458829;
+ //BA.debugLineNum = 458829;BA.debugLine="Solve";
 _solve();
  break; }
 default: {
- //BA.debugLineNum = 239;BA.debugLine="Select prev";
+RDebugUtils.currentLine=458831;
+ //BA.debugLineNum = 458831;BA.debugLine="Select prev";
 switch (BA.switchObjectToInt(_prev,BA.ObjectToChar("`"),BA.ObjectToChar("-"),BA.ObjectToChar("+"),BA.ObjectToChar("x"),BA.ObjectToChar("%"),BA.ObjectToChar("÷"))) {
 case 0: {
- //BA.debugLineNum = 241;BA.debugLine="Return";
+RDebugUtils.currentLine=458833;
+ //BA.debugLineNum = 458833;BA.debugLine="Return";
 if (true) return "";
  break; }
 case 1: {
- //BA.debugLineNum = 243;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=458835;
+ //BA.debugLineNum = 458835;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
  break; }
 case 2: {
- //BA.debugLineNum = 245;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=458837;
+ //BA.debugLineNum = 458837;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
  break; }
 case 3: {
- //BA.debugLineNum = 247;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=458839;
+ //BA.debugLineNum = 458839;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
  break; }
 case 4: {
- //BA.debugLineNum = 249;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=458841;
+ //BA.debugLineNum = 458841;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
  break; }
 case 5: {
- //BA.debugLineNum = 251;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
+RDebugUtils.currentLine=458843;
+ //BA.debugLineNum = 458843;BA.debugLine="lblPrompt.Text = lblPrompt.Text.SubString2(0,";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText().substring((int) (0),(int) (mostCurrent._lblprompt.getText().length()-1))));
  break; }
 }
 ;
- //BA.debugLineNum = 254;BA.debugLine="If lblPrompt.TextColor <> promptTxtColor Then";
+RDebugUtils.currentLine=458846;
+ //BA.debugLineNum = 458846;BA.debugLine="If lblPrompt.TextColor <> promptTxtColor Then";
 if (mostCurrent._lblprompt.getTextColor()!=_prompttxtcolor) { 
- //BA.debugLineNum = 255;BA.debugLine="lblPrompt.SetTextColorAnimated(400,promptTxtCo";
+RDebugUtils.currentLine=458847;
+ //BA.debugLineNum = 458847;BA.debugLine="lblPrompt.SetTextColorAnimated(400,promptTxtCo";
 mostCurrent._lblprompt.SetTextColorAnimated((int) (400),_prompttxtcolor);
  };
- //BA.debugLineNum = 257;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
+RDebugUtils.currentLine=458849;
+ //BA.debugLineNum = 458849;BA.debugLine="lblPrompt.Text = lblPrompt.Text & btnSender.Tex";
 mostCurrent._lblprompt.setText(BA.ObjectToCharSequence(mostCurrent._lblprompt.getText()+mostCurrent._btnsender.getText()));
- //BA.debugLineNum = 258;BA.debugLine="Solve";
+RDebugUtils.currentLine=458850;
+ //BA.debugLineNum = 458850;BA.debugLine="Solve";
 _solve();
  break; }
 }
 ;
- //BA.debugLineNum = 261;BA.debugLine="If lblPrompt.Text.Length < 10 Then";
+RDebugUtils.currentLine=458853;
+ //BA.debugLineNum = 458853;BA.debugLine="If lblPrompt.Text.Length < 10 Then";
 if (mostCurrent._lblprompt.getText().length()<10) { 
- //BA.debugLineNum = 262;BA.debugLine="lblPrompt.TextSize = 50";
+RDebugUtils.currentLine=458854;
+ //BA.debugLineNum = 458854;BA.debugLine="lblPrompt.TextSize = 50";
 mostCurrent._lblprompt.setTextSize((float) (50));
- }else if(mostCurrent._lblprompt.getText().length()<20) { 
- //BA.debugLineNum = 264;BA.debugLine="lblPrompt.TextSize = 40";
+ }else 
+{RDebugUtils.currentLine=458855;
+ //BA.debugLineNum = 458855;BA.debugLine="Else If lblPrompt.Text.Length < 20 Then";
+if (mostCurrent._lblprompt.getText().length()<20) { 
+RDebugUtils.currentLine=458856;
+ //BA.debugLineNum = 458856;BA.debugLine="lblPrompt.TextSize = 40";
 mostCurrent._lblprompt.setTextSize((float) (40));
  }else {
- //BA.debugLineNum = 266;BA.debugLine="lblPrompt.TextSize = 30";
+RDebugUtils.currentLine=458858;
+ //BA.debugLineNum = 458858;BA.debugLine="lblPrompt.TextSize = 30";
 mostCurrent._lblprompt.setTextSize((float) (30));
- };
- //BA.debugLineNum = 268;BA.debugLine="End Sub";
+ }}
+;
+RDebugUtils.currentLine=458860;
+ //BA.debugLineNum = 458860;BA.debugLine="End Sub";
+return "";
+}
+public static String  _lblpopanimation(anywheresoftware.b4a.objects.LabelWrapper _label,int _time,int _color) throws Exception{
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "lblpopanimation", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "lblpopanimation", new Object[] {_label,_time,_color}));}
+float _origsize = 0f;
+RDebugUtils.currentLine=589824;
+ //BA.debugLineNum = 589824;BA.debugLine="Private Sub lblPopAnimation(label As Label, time A";
+RDebugUtils.currentLine=589825;
+ //BA.debugLineNum = 589825;BA.debugLine="Log(label.TextSize)";
+anywheresoftware.b4a.keywords.Common.LogImpl("4589825",BA.NumberToString(_label.getTextSize()),0);
+RDebugUtils.currentLine=589826;
+ //BA.debugLineNum = 589826;BA.debugLine="Dim origSize As Float = label.TextSize";
+_origsize = _label.getTextSize();
+RDebugUtils.currentLine=589827;
+ //BA.debugLineNum = 589827;BA.debugLine="label.TextSize = 10";
+_label.setTextSize((float) (10));
+RDebugUtils.currentLine=589829;
+ //BA.debugLineNum = 589829;BA.debugLine="label.SetTextColorAnimated(time,color)";
+_label.SetTextColorAnimated(_time,_color);
+RDebugUtils.currentLine=589830;
+ //BA.debugLineNum = 589830;BA.debugLine="label.SetTextSizeAnimated(time,origSize)";
+_label.SetTextSizeAnimated(_time,_origsize);
+RDebugUtils.currentLine=589831;
+ //BA.debugLineNum = 589831;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getnumberleft(int _ind) throws Exception{
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "getnumberleft", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "getnumberleft", new Object[] {_ind}));}
 int _leftctr = 0;
 int _row = 0;
- //BA.debugLineNum = 101;BA.debugLine="Private Sub GetNumberLeft(ind As Int) As String";
- //BA.debugLineNum = 102;BA.debugLine="Dim leftCtr As Int = ind";
+RDebugUtils.currentLine=262144;
+ //BA.debugLineNum = 262144;BA.debugLine="Private Sub GetNumberLeft(ind As Int) As String";
+RDebugUtils.currentLine=262145;
+ //BA.debugLineNum = 262145;BA.debugLine="Dim leftCtr As Int = ind";
 _leftctr = _ind;
- //BA.debugLineNum = 103;BA.debugLine="For row = ind - 1 To 0 Step -1";
+RDebugUtils.currentLine=262146;
+ //BA.debugLineNum = 262146;BA.debugLine="For row = ind - 1 To 0 Step -1";
 {
 final int step2 = -1;
 final int limit2 = (int) (0);
 _row = (int) (_ind-1) ;
 for (;_row >= limit2 ;_row = _row + step2 ) {
- //BA.debugLineNum = 104;BA.debugLine="If IsNumber(text.CharAt(row)) Or text.CharAt(row";
+RDebugUtils.currentLine=262147;
+ //BA.debugLineNum = 262147;BA.debugLine="If IsNumber(text.CharAt(row)) Or text.CharAt(row";
 if (anywheresoftware.b4a.keywords.Common.IsNumber(BA.ObjectToString(mostCurrent._text.charAt(_row))) || mostCurrent._text.charAt(_row)==BA.ObjectToChar(".")) { 
- //BA.debugLineNum = 105;BA.debugLine="leftCtr = row";
+RDebugUtils.currentLine=262148;
+ //BA.debugLineNum = 262148;BA.debugLine="leftCtr = row";
 _leftctr = _row;
- }else if(mostCurrent._text.charAt(_row)==BA.ObjectToChar("-") && _row==0) { 
- //BA.debugLineNum = 107;BA.debugLine="leftCtr = row";
+ }else 
+{RDebugUtils.currentLine=262149;
+ //BA.debugLineNum = 262149;BA.debugLine="Else If text.CharAt(row) = \"-\" And row = 0 Then";
+if (mostCurrent._text.charAt(_row)==BA.ObjectToChar("-") && _row==0) { 
+RDebugUtils.currentLine=262150;
+ //BA.debugLineNum = 262150;BA.debugLine="leftCtr = row";
 _leftctr = _row;
- //BA.debugLineNum = 108;BA.debugLine="Exit";
+RDebugUtils.currentLine=262151;
+ //BA.debugLineNum = 262151;BA.debugLine="Exit";
 if (true) break;
  }else {
- //BA.debugLineNum = 110;BA.debugLine="Exit";
+RDebugUtils.currentLine=262153;
+ //BA.debugLineNum = 262153;BA.debugLine="Exit";
 if (true) break;
- };
+ }}
+;
  }
 };
- //BA.debugLineNum = 114;BA.debugLine="If leftCtr = ind Then";
+RDebugUtils.currentLine=262157;
+ //BA.debugLineNum = 262157;BA.debugLine="If leftCtr = ind Then";
 if (_leftctr==_ind) { 
- //BA.debugLineNum = 116;BA.debugLine="Return \"\"";
+RDebugUtils.currentLine=262159;
+ //BA.debugLineNum = 262159;BA.debugLine="Return \"\"";
 if (true) return "";
  }else {
- //BA.debugLineNum = 118;BA.debugLine="Return text.SubString2(leftCtr, ind)";
+RDebugUtils.currentLine=262161;
+ //BA.debugLineNum = 262161;BA.debugLine="Return text.SubString2(leftCtr, ind)";
 if (true) return mostCurrent._text.substring(_leftctr,_ind);
  };
- //BA.debugLineNum = 120;BA.debugLine="End Sub";
+RDebugUtils.currentLine=262163;
+ //BA.debugLineNum = 262163;BA.debugLine="End Sub";
 return "";
 }
 public static String  _getnumberright(int _ind) throws Exception{
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "getnumberright", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "getnumberright", new Object[] {_ind}));}
 int _rightctr = 0;
 int _row = 0;
- //BA.debugLineNum = 122;BA.debugLine="Private Sub GetNumberRight(ind As Int) As String";
- //BA.debugLineNum = 123;BA.debugLine="Dim rightCtr As Int = ind";
+RDebugUtils.currentLine=327680;
+ //BA.debugLineNum = 327680;BA.debugLine="Private Sub GetNumberRight(ind As Int) As String";
+RDebugUtils.currentLine=327681;
+ //BA.debugLineNum = 327681;BA.debugLine="Dim rightCtr As Int = ind";
 _rightctr = _ind;
- //BA.debugLineNum = 124;BA.debugLine="For row = ind + 1 To text.Length - 1 Step 1";
+RDebugUtils.currentLine=327682;
+ //BA.debugLineNum = 327682;BA.debugLine="For row = ind + 1 To text.Length - 1 Step 1";
 {
 final int step2 = 1;
 final int limit2 = (int) (mostCurrent._text.length()-1);
 _row = (int) (_ind+1) ;
 for (;_row <= limit2 ;_row = _row + step2 ) {
- //BA.debugLineNum = 125;BA.debugLine="If text.CharAt(row) = \"-\" And row = ind + 1 Then";
+RDebugUtils.currentLine=327683;
+ //BA.debugLineNum = 327683;BA.debugLine="If text.CharAt(row) = \"-\" And row = ind + 1 Then";
 if (mostCurrent._text.charAt(_row)==BA.ObjectToChar("-") && _row==_ind+1) { 
- //BA.debugLineNum = 126;BA.debugLine="rightCtr = row";
+RDebugUtils.currentLine=327684;
+ //BA.debugLineNum = 327684;BA.debugLine="rightCtr = row";
 _rightctr = _row;
- }else if(anywheresoftware.b4a.keywords.Common.IsNumber(BA.ObjectToString(mostCurrent._text.charAt(_row))) || mostCurrent._text.charAt(_row)==BA.ObjectToChar(".")) { 
- //BA.debugLineNum = 128;BA.debugLine="rightCtr = row";
+ }else 
+{RDebugUtils.currentLine=327685;
+ //BA.debugLineNum = 327685;BA.debugLine="Else If IsNumber(text.CharAt(row)) Or text.CharA";
+if (anywheresoftware.b4a.keywords.Common.IsNumber(BA.ObjectToString(mostCurrent._text.charAt(_row))) || mostCurrent._text.charAt(_row)==BA.ObjectToChar(".")) { 
+RDebugUtils.currentLine=327686;
+ //BA.debugLineNum = 327686;BA.debugLine="rightCtr = row";
 _rightctr = _row;
  }else {
- //BA.debugLineNum = 130;BA.debugLine="Exit";
+RDebugUtils.currentLine=327688;
+ //BA.debugLineNum = 327688;BA.debugLine="Exit";
 if (true) break;
- };
+ }}
+;
  }
 };
- //BA.debugLineNum = 134;BA.debugLine="If rightCtr = ind Then";
+RDebugUtils.currentLine=327692;
+ //BA.debugLineNum = 327692;BA.debugLine="If rightCtr = ind Then";
 if (_rightctr==_ind) { 
- //BA.debugLineNum = 136;BA.debugLine="Return \"\"";
+RDebugUtils.currentLine=327694;
+ //BA.debugLineNum = 327694;BA.debugLine="Return \"\"";
 if (true) return "";
  };
- //BA.debugLineNum = 138;BA.debugLine="Return text.SubString2(ind + 1, rightCtr + 1)";
+RDebugUtils.currentLine=327696;
+ //BA.debugLineNum = 327696;BA.debugLine="Return text.SubString2(ind + 1, rightCtr + 1)";
 if (true) return mostCurrent._text.substring((int) (_ind+1),(int) (_rightctr+1));
- //BA.debugLineNum = 139;BA.debugLine="End Sub";
-return "";
-}
-public static String  _globals() throws Exception{
- //BA.debugLineNum = 21;BA.debugLine="Sub Globals";
- //BA.debugLineNum = 23;BA.debugLine="Private lblPrompt As Label";
-mostCurrent._lblprompt = new anywheresoftware.b4a.objects.LabelWrapper();
- //BA.debugLineNum = 24;BA.debugLine="Private lblResult As Label";
-mostCurrent._lblresult = new anywheresoftware.b4a.objects.LabelWrapper();
- //BA.debugLineNum = 25;BA.debugLine="Private btnSender As Button";
-mostCurrent._btnsender = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 26;BA.debugLine="Private lblLog As Label";
-mostCurrent._lbllog = new anywheresoftware.b4a.objects.LabelWrapper();
- //BA.debugLineNum = 27;BA.debugLine="Private edtPrompt As EditText";
-mostCurrent._edtprompt = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 29;BA.debugLine="Dim text As String";
-mostCurrent._text = "";
- //BA.debugLineNum = 30;BA.debugLine="Dim promptTxtColor As Int";
-_prompttxtcolor = 0;
- //BA.debugLineNum = 31;BA.debugLine="End Sub";
-return "";
-}
-public static String  _lblpopanimation(anywheresoftware.b4a.objects.LabelWrapper _label,int _time,int _color) throws Exception{
-float _origsize = 0f;
- //BA.debugLineNum = 307;BA.debugLine="Private Sub lblPopAnimation(label As Label, time A";
- //BA.debugLineNum = 308;BA.debugLine="Log(label.TextSize)";
-anywheresoftware.b4a.keywords.Common.LogImpl("5589825",BA.NumberToString(_label.getTextSize()),0);
- //BA.debugLineNum = 309;BA.debugLine="Dim origSize As Float = label.TextSize";
-_origsize = _label.getTextSize();
- //BA.debugLineNum = 310;BA.debugLine="label.TextSize = 10";
-_label.setTextSize((float) (10));
- //BA.debugLineNum = 312;BA.debugLine="label.SetTextColorAnimated(time,color)";
-_label.SetTextColorAnimated(_time,_color);
- //BA.debugLineNum = 313;BA.debugLine="label.SetTextSizeAnimated(time,origSize)";
-_label.SetTextSizeAnimated(_time,_origsize);
- //BA.debugLineNum = 314;BA.debugLine="End Sub";
-return "";
-}
-
-public static void initializeProcessGlobals() {
-    
-    if (main.processGlobalsRun == false) {
-	    main.processGlobalsRun = true;
-		try {
-		        main._process_globals();
-starter._process_globals();
-		
-        } catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-    }
-}public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 15;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 18;BA.debugLine="Private xui As XUI";
-_xui = new anywheresoftware.b4a.objects.B4XViewWrapper.XUI();
- //BA.debugLineNum = 19;BA.debugLine="End Sub";
+RDebugUtils.currentLine=327697;
+ //BA.debugLineNum = 327697;BA.debugLine="End Sub";
 return "";
 }
 public static String  _processoperators(String _operator) throws Exception{
+RDebugUtils.currentModule="main";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "processoperators", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "processoperators", new Object[] {_operator}));}
 int _ind = 0;
 String _strleft = "";
 String _strright = "";
@@ -747,120 +963,116 @@ String _strrem = "";
 float _int1 = 0f;
 float _int2 = 0f;
 float _res = 0f;
- //BA.debugLineNum = 40;BA.debugLine="Private Sub ProcessOperators(operator As String)";
- //BA.debugLineNum = 41;BA.debugLine="If text.IndexOf2(operator,1) <> -1 Then";
+RDebugUtils.currentLine=196608;
+ //BA.debugLineNum = 196608;BA.debugLine="Private Sub ProcessOperators(operator As String)";
+RDebugUtils.currentLine=196609;
+ //BA.debugLineNum = 196609;BA.debugLine="If text.IndexOf2(operator,1) <> -1 Then";
 if (mostCurrent._text.indexOf(_operator,(int) (1))!=-1) { 
- //BA.debugLineNum = 42;BA.debugLine="Log(\" \")";
-anywheresoftware.b4a.keywords.Common.LogImpl("5196610"," ",0);
- //BA.debugLineNum = 44;BA.debugLine="Log(\"Operator : (\" & operator & \") ~~~~~\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("5196612","Operator : ("+_operator+") ~~~~~",0);
+RDebugUtils.currentLine=196610;
+ //BA.debugLineNum = 196610;BA.debugLine="Log(\" \")";
+anywheresoftware.b4a.keywords.Common.LogImpl("4196610"," ",0);
+RDebugUtils.currentLine=196612;
+ //BA.debugLineNum = 196612;BA.debugLine="Log(\"Operator : (\" & operator & \") ~~~~~\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("4196612","Operator : ("+_operator+") ~~~~~",0);
  };
- //BA.debugLineNum = 47;BA.debugLine="Do While text.IndexOf2(operator,1) <> -1";
+RDebugUtils.currentLine=196615;
+ //BA.debugLineNum = 196615;BA.debugLine="Do While text.IndexOf2(operator,1) <> -1";
 while (mostCurrent._text.indexOf(_operator,(int) (1))!=-1) {
- //BA.debugLineNum = 48;BA.debugLine="If operator = \"-\" Then";
+RDebugUtils.currentLine=196616;
+ //BA.debugLineNum = 196616;BA.debugLine="If operator = \"-\" Then";
 if ((_operator).equals("-")) { 
- //BA.debugLineNum = 49;BA.debugLine="Dim ind As Int = text.IndexOf2(operator,1)";
+RDebugUtils.currentLine=196617;
+ //BA.debugLineNum = 196617;BA.debugLine="Dim ind As Int = text.IndexOf2(operator,1)";
 _ind = mostCurrent._text.indexOf(_operator,(int) (1));
  }else {
- //BA.debugLineNum = 51;BA.debugLine="Dim ind As Int = text.IndexOf(operator)";
+RDebugUtils.currentLine=196619;
+ //BA.debugLineNum = 196619;BA.debugLine="Dim ind As Int = text.IndexOf(operator)";
 _ind = mostCurrent._text.indexOf(_operator);
  };
- //BA.debugLineNum = 54;BA.debugLine="Dim strLeft As String = GetNumberLeft(ind)";
+RDebugUtils.currentLine=196622;
+ //BA.debugLineNum = 196622;BA.debugLine="Dim strLeft As String = GetNumberLeft(ind)";
 _strleft = _getnumberleft(_ind);
- //BA.debugLineNum = 55;BA.debugLine="Dim strRight As String = GetNumberRight(ind)";
+RDebugUtils.currentLine=196623;
+ //BA.debugLineNum = 196623;BA.debugLine="Dim strRight As String = GetNumberRight(ind)";
 _strright = _getnumberright(_ind);
- //BA.debugLineNum = 57;BA.debugLine="If strLeft = \"\" Or strRight = \"\" Or strRight = \"";
+RDebugUtils.currentLine=196625;
+ //BA.debugLineNum = 196625;BA.debugLine="If strLeft = \"\" Or strRight = \"\" Or strRight = \"";
 if ((_strleft).equals("") || (_strright).equals("") || (_strright).equals("-")) { 
- //BA.debugLineNum = 58;BA.debugLine="Log(\"Invalid\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("5196626","Invalid",0);
- //BA.debugLineNum = 59;BA.debugLine="text = \"\"";
+RDebugUtils.currentLine=196626;
+ //BA.debugLineNum = 196626;BA.debugLine="Log(\"Invalid\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("4196626","Invalid",0);
+RDebugUtils.currentLine=196627;
+ //BA.debugLineNum = 196627;BA.debugLine="text = \"\"";
 mostCurrent._text = "";
- //BA.debugLineNum = 60;BA.debugLine="Return ' Exit the subroutine if invalid";
+RDebugUtils.currentLine=196628;
+ //BA.debugLineNum = 196628;BA.debugLine="Return ' Exit the subroutine if invalid";
 if (true) return "";
  };
- //BA.debugLineNum = 64;BA.debugLine="Dim strRem As String = strLeft & operator & strR";
+RDebugUtils.currentLine=196632;
+ //BA.debugLineNum = 196632;BA.debugLine="Dim strRem As String = strLeft & operator & strR";
 _strrem = _strleft+_operator+_strright;
- //BA.debugLineNum = 65;BA.debugLine="Dim int1 As Float = strLeft.As(Float)";
+RDebugUtils.currentLine=196633;
+ //BA.debugLineNum = 196633;BA.debugLine="Dim int1 As Float = strLeft.As(Float)";
 _int1 = ((float)(Double.parseDouble(_strleft)));
- //BA.debugLineNum = 66;BA.debugLine="Dim int2 As Float = strRight.As(Float)";
+RDebugUtils.currentLine=196634;
+ //BA.debugLineNum = 196634;BA.debugLine="Dim int2 As Float = strRight.As(Float)";
 _int2 = ((float)(Double.parseDouble(_strright)));
- //BA.debugLineNum = 67;BA.debugLine="Dim res As Float";
+RDebugUtils.currentLine=196635;
+ //BA.debugLineNum = 196635;BA.debugLine="Dim res As Float";
 _res = 0f;
- //BA.debugLineNum = 69;BA.debugLine="If operator = \"÷\" And int2 = 0 Then";
+RDebugUtils.currentLine=196637;
+ //BA.debugLineNum = 196637;BA.debugLine="If operator = \"÷\" And int2 = 0 Then";
 if ((_operator).equals("÷") && _int2==0) { 
- //BA.debugLineNum = 70;BA.debugLine="text = \"Cannot divide by 0\"";
+RDebugUtils.currentLine=196638;
+ //BA.debugLineNum = 196638;BA.debugLine="text = \"Cannot divide by 0\"";
 mostCurrent._text = "Cannot divide by 0";
- //BA.debugLineNum = 71;BA.debugLine="Return";
+RDebugUtils.currentLine=196639;
+ //BA.debugLineNum = 196639;BA.debugLine="Return";
 if (true) return "";
  };
- //BA.debugLineNum = 74;BA.debugLine="Select operator";
+RDebugUtils.currentLine=196642;
+ //BA.debugLineNum = 196642;BA.debugLine="Select operator";
 switch (BA.switchObjectToInt(_operator,"x","÷","%","+","-")) {
 case 0: {
- //BA.debugLineNum = 76;BA.debugLine="res = int1 * int2";
+RDebugUtils.currentLine=196644;
+ //BA.debugLineNum = 196644;BA.debugLine="res = int1 * int2";
 _res = (float) (_int1*_int2);
  break; }
 case 1: {
- //BA.debugLineNum = 79;BA.debugLine="res = int1 / int2";
+RDebugUtils.currentLine=196647;
+ //BA.debugLineNum = 196647;BA.debugLine="res = int1 / int2";
 _res = (float) (_int1/(double)_int2);
  break; }
 case 2: {
- //BA.debugLineNum = 82;BA.debugLine="res = (int1 * int2) / 100";
+RDebugUtils.currentLine=196650;
+ //BA.debugLineNum = 196650;BA.debugLine="res = (int1 * int2) / 100";
 _res = (float) ((_int1*_int2)/(double)100);
  break; }
 case 3: {
- //BA.debugLineNum = 84;BA.debugLine="res = int1 + int2";
+RDebugUtils.currentLine=196652;
+ //BA.debugLineNum = 196652;BA.debugLine="res = int1 + int2";
 _res = (float) (_int1+_int2);
  break; }
 case 4: {
- //BA.debugLineNum = 87;BA.debugLine="res = int1 - int2";
+RDebugUtils.currentLine=196655;
+ //BA.debugLineNum = 196655;BA.debugLine="res = int1 - int2";
 _res = (float) (_int1-_int2);
  break; }
 }
 ;
- //BA.debugLineNum = 93;BA.debugLine="lblLog.Text = lblLog.Text & CRLF & \"[ \" & (text.";
+RDebugUtils.currentLine=196661;
+ //BA.debugLineNum = 196661;BA.debugLine="lblLog.Text = lblLog.Text & CRLF & \"[ \" & (text.";
 mostCurrent._lbllog.setText(BA.ObjectToCharSequence(mostCurrent._lbllog.getText()+anywheresoftware.b4a.keywords.Common.CRLF+"[ "+(mostCurrent._text.replace(_strrem,"("+_strrem+")")+" ]"+" = "+"[ "+mostCurrent._text.replace(_strrem,"("+anywheresoftware.b4a.keywords.Common.NumberFormat2(_res,(int) (0),(int) (13),(int) (0),anywheresoftware.b4a.keywords.Common.False)+")"))+" ]"));
- //BA.debugLineNum = 94;BA.debugLine="Log(\"[ \" & (text.Replace(strRem,\"(\" & strRem & \"";
-anywheresoftware.b4a.keywords.Common.LogImpl("5196662","[ "+(mostCurrent._text.replace(_strrem,"("+_strrem+")")+" ]"+" = "+"[ "+mostCurrent._text.replace(_strrem,"("+anywheresoftware.b4a.keywords.Common.NumberFormat2(_res,(int) (0),(int) (13),(int) (0),anywheresoftware.b4a.keywords.Common.False)+")"))+" ]",0);
- //BA.debugLineNum = 95;BA.debugLine="text = text.Replace(strRem, NumberFormat2(res, 0";
+RDebugUtils.currentLine=196662;
+ //BA.debugLineNum = 196662;BA.debugLine="Log(\"[ \" & (text.Replace(strRem,\"(\" & strRem & \"";
+anywheresoftware.b4a.keywords.Common.LogImpl("4196662","[ "+(mostCurrent._text.replace(_strrem,"("+_strrem+")")+" ]"+" = "+"[ "+mostCurrent._text.replace(_strrem,"("+anywheresoftware.b4a.keywords.Common.NumberFormat2(_res,(int) (0),(int) (13),(int) (0),anywheresoftware.b4a.keywords.Common.False)+")"))+" ]",0);
+RDebugUtils.currentLine=196663;
+ //BA.debugLineNum = 196663;BA.debugLine="text = text.Replace(strRem, NumberFormat2(res, 0";
 mostCurrent._text = mostCurrent._text.replace(_strrem,anywheresoftware.b4a.keywords.Common.NumberFormat2(_res,(int) (0),(int) (13),(int) (0),anywheresoftware.b4a.keywords.Common.False));
  }
 ;
- //BA.debugLineNum = 99;BA.debugLine="End Sub";
-return "";
-}
-public static String  _solve() throws Exception{
- //BA.debugLineNum = 141;BA.debugLine="Private Sub Solve";
- //BA.debugLineNum = 142;BA.debugLine="text = lblPrompt.Text";
-mostCurrent._text = mostCurrent._lblprompt.getText();
- //BA.debugLineNum = 143;BA.debugLine="Log(\"START: \" & text)";
-anywheresoftware.b4a.keywords.Common.LogImpl("5393218","START: "+mostCurrent._text,0);
- //BA.debugLineNum = 144;BA.debugLine="lblLog.Text = \"\"";
-mostCurrent._lbllog.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 145;BA.debugLine="lblLog.Text = \"START: \" & text & CRLF";
-mostCurrent._lbllog.setText(BA.ObjectToCharSequence("START: "+mostCurrent._text+anywheresoftware.b4a.keywords.Common.CRLF));
- //BA.debugLineNum = 147;BA.debugLine="lblResult.Text = \"\"";
-mostCurrent._lblresult.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 148;BA.debugLine="ProcessOperators(\"÷\")";
-_processoperators("÷");
- //BA.debugLineNum = 149;BA.debugLine="ProcessOperators(\"x\")";
-_processoperators("x");
- //BA.debugLineNum = 150;BA.debugLine="ProcessOperators(\"%\")";
-_processoperators("%");
- //BA.debugLineNum = 151;BA.debugLine="ProcessOperators(\"+\")";
-_processoperators("+");
- //BA.debugLineNum = 152;BA.debugLine="ProcessOperators(\"-\")";
-_processoperators("-");
- //BA.debugLineNum = 153;BA.debugLine="Log(\" \")";
-anywheresoftware.b4a.keywords.Common.LogImpl("5393228"," ",0);
- //BA.debugLineNum = 154;BA.debugLine="Log(\"RESULT: \" & text)";
-anywheresoftware.b4a.keywords.Common.LogImpl("5393229","RESULT: "+mostCurrent._text,0);
- //BA.debugLineNum = 155;BA.debugLine="lblLog.Text = lblLog.Text & CRLF & \" \" & CRLF & \"";
-mostCurrent._lbllog.setText(BA.ObjectToCharSequence(mostCurrent._lbllog.getText()+anywheresoftware.b4a.keywords.Common.CRLF+" "+anywheresoftware.b4a.keywords.Common.CRLF+"RESULT: "+mostCurrent._text));
- //BA.debugLineNum = 156;BA.debugLine="lblResult.Text = text";
-mostCurrent._lblresult.setText(BA.ObjectToCharSequence(mostCurrent._text));
- //BA.debugLineNum = 157;BA.debugLine="Log(\"---------------------------------\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("5393232","---------------------------------",0);
- //BA.debugLineNum = 158;BA.debugLine="End Sub";
+RDebugUtils.currentLine=196667;
+ //BA.debugLineNum = 196667;BA.debugLine="End Sub";
 return "";
 }
 }
